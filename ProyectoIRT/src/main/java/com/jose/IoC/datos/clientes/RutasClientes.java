@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.jose.IoC.datos.vehiculos.Vehiculo;
 import com.jose.IoC.datos.vehiculos.VehiculoDAO;
 
 @Controller
@@ -61,9 +61,10 @@ public class RutasClientes {
             mav.setViewName("redirect:/añadirClientes");
             System.out.println("Error de bindingResult" + bindingResult.hasErrors());
         } else {
-            mav.setViewName("DatosCliente");
+            mav.setViewName("AñadirVehiculo");
             clienteDAO.save(cliente);
             mav.addObject("cliente",cliente);
+            mav.addObject("vehiculo", new Vehiculo());
             System.out.println(cliente);
         }
 		

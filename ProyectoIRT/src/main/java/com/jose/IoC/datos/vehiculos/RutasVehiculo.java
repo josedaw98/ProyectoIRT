@@ -1,5 +1,6 @@
 package com.jose.IoC.datos.vehiculos;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,22 +40,7 @@ public class RutasVehiculo {
 		return mav;
 	}
 	
-	@GetMapping("/añadirVehiculo/{id}")
-	public ModelAndView AñadirClientes(@ModelAttribute String id){
-		
-		ModelAndView mav = new ModelAndView();		
-		mav.setViewName("AñadirVehiculo");
-		mav.addObject("vehiculo",new Vehiculo());
-		
-		Optional<Cliente>Lista =clienteDAO.findById(id);
-		Cliente cliente = new Cliente();
-		cliente=Lista.get();
-		mav.addObject("cliente", cliente);
-		System.out.println(cliente);
-		
-		
-		return mav;
-	}
+
 	
 	@PostMapping("/addVehiculo")
 	public ModelAndView addPersona(@ModelAttribute Vehiculo vehiculo, BindingResult bindingResult) {
@@ -65,7 +51,23 @@ public class RutasVehiculo {
             System.out.println("Error de bindingResult" + bindingResult.hasErrors());
         } else {
             mav.setViewName("redirect:/vehiculos");
+            
             vehiculoDAO.save(vehiculo);
+            
+            Optional<Cliente>Lista =clienteDAO.findById(vehiculo.getCliente().getDni());
+			Cliente cliente =Lista.get();
+			
+			List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+			
+			if(cliente.getListaVehiculos()!=null) {
+				listaVehiculos = cliente.getListaVehiculos();
+				
+			}
+			
+			listaVehiculos.add(vehiculo);
+			cliente.setListaVehiculos(listaVehiculos);
+			
+			clienteDAO.save(cliente);
           
         }
 		
@@ -149,10 +151,11 @@ public class RutasVehiculo {
 		ModelAndView mav = new ModelAndView();
 		
 		if(clienteDAO.existsById(cliente.getDni())) {
-			mav.setViewName("DatosCliente");
+			mav.setViewName("AñadirVehiculo");
 			Optional<Cliente>Lista =clienteDAO.findById(cliente.getDni());
 			cliente=Lista.get();
 			mav.addObject("cliente", cliente);
+			mav.addObject("vehiculo", new Vehiculo());
 			System.out.println(cliente);
 		}else {
 			mav.setViewName("NoEncontrado");

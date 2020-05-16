@@ -50,7 +50,7 @@
 				        <td th:text="${vehiculo.bastidor}"></td>
 				        <td th:text="${vehiculo.marca}"></td>
 				        <td th:text="${vehiculo.anio}"></td>
-				        <td th:text="${vehiculo.cliente}"></td>
+				        <td th:text="${vehiculo.cliente.dni}"></td> 
 				          
 				        <td>
 				        	<a type="button" class="btn btn-danger btn-sm" data-toggle="modal" th:attr="data-target='#modal-warning'+${vehiculo.matricula}">Eliminar</a>
