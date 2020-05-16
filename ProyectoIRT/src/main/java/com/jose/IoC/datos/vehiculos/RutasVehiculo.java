@@ -39,59 +39,22 @@ public class RutasVehiculo {
 		return mav;
 	}
 	
-	@GetMapping("/añadirVehiculo")
-	public ModelAndView AñadirClientes(@ModelAttribute Cliente cliente){
+	@GetMapping("/añadirVehiculo/{id}")
+	public ModelAndView AñadirClientes(@ModelAttribute String id){
 		
 		ModelAndView mav = new ModelAndView();		
 		mav.setViewName("AñadirVehiculo");
 		mav.addObject("vehiculo",new Vehiculo());
 		
-		mav.addObject("cliente",cliente);
-		
-		List<Cliente> listaClientes= (List<Cliente>)clienteDAO.findAll();
-		mav.addObject("listaClientes",listaClientes);
-		
-		
-		return mav;
-	}
-	
-	@GetMapping("/elegirCliente")
-	public ModelAndView elegirCliente(){
-		
-		ModelAndView mav = new ModelAndView();		
-		mav.setViewName("ElegirCliente");
-		
-		return mav;
-	}
-	
-	
-	@GetMapping("/comprobarCliente")
-	public ModelAndView ComprobarCliente(){
-		
-		ModelAndView mav = new ModelAndView();		
-		mav.setViewName("ComprobarCliente");
-		
-		return mav;
-	}
-	
-	@PostMapping("/clienteComprobado")
-	public ModelAndView ClienteComprobado(@ModelAttribute Cliente cliente){
-		
-		ModelAndView mav = new ModelAndView();
-		
-		if(clienteDAO.existsById(cliente.getDni())) {
-			mav.setViewName("DatosCliente");
-			Optional<Cliente>Lista =clienteDAO.findById(cliente.getDni());
-			cliente=Lista.get();
-		}else {
-			mav.setViewName("NoEncontrado");
-		}
+		Optional<Cliente>Lista =clienteDAO.findById(id);
+		Cliente cliente = new Cliente();
+		cliente=Lista.get();
+		mav.addObject("cliente", cliente);
+		System.out.println(cliente);
 		
 		
 		return mav;
 	}
-	
-	
 	
 	@PostMapping("/addVehiculo")
 	public ModelAndView addPersona(@ModelAttribute Vehiculo vehiculo, BindingResult bindingResult) {
@@ -140,7 +103,7 @@ public class RutasVehiculo {
 		}
 		
 		vehiculoDAO.save(vehiculo);
-		mav.setViewName("redirect:/Vehiculos");
+		mav.setViewName("redirect:/vehiculos");
 		return mav;
 	}
 	
@@ -159,4 +122,44 @@ public class RutasVehiculo {
 		return mav;
 		
 	}
+
+	@GetMapping("/elegirCliente")
+	public ModelAndView elegirCliente(){
+		
+		ModelAndView mav = new ModelAndView();		
+		mav.setViewName("ElegirCliente");
+		
+		return mav;
+	}
+	
+	
+	@GetMapping("/comprobarCliente")
+	public ModelAndView ComprobarCliente(){
+		
+		ModelAndView mav = new ModelAndView();	
+		mav.addObject("cliente",new Cliente());
+		mav.setViewName("ComprobarCliente");
+		
+		return mav;
+	}
+	
+	@PostMapping("/clienteComprobado")
+	public ModelAndView ClienteComprobado(@ModelAttribute Cliente cliente){
+		
+		ModelAndView mav = new ModelAndView();
+		
+		if(clienteDAO.existsById(cliente.getDni())) {
+			mav.setViewName("DatosCliente");
+			Optional<Cliente>Lista =clienteDAO.findById(cliente.getDni());
+			cliente=Lista.get();
+			mav.addObject("cliente", cliente);
+			System.out.println(cliente);
+		}else {
+			mav.setViewName("NoEncontrado");
+		}
+		
+		
+		return mav;
+	}
+	
 }

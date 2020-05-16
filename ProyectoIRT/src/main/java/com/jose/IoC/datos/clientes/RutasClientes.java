@@ -1,6 +1,7 @@
 package com.jose.IoC.datos.clientes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jose.IoC.datos.vehiculos.Vehiculo;
+
 import com.jose.IoC.datos.vehiculos.VehiculoDAO;
 
 @Controller
@@ -60,10 +61,10 @@ public class RutasClientes {
             mav.setViewName("redirect:/añadirClientes");
             System.out.println("Error de bindingResult" + bindingResult.hasErrors());
         } else {
-            mav.setViewName("/AñadirVehiculo");
+            mav.setViewName("DatosCliente");
             clienteDAO.save(cliente);
             mav.addObject("cliente",cliente);
-          
+            System.out.println(cliente);
         }
 		
 		return mav;
@@ -117,6 +118,14 @@ public class RutasClientes {
 		return mav;
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 

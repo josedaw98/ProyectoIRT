@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<meta charset="utf-8">
+
+<title>Datos Cliente</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class=" container-fluid row p-5">
+      <div class="col-10"> 
+        <div class="mb-5"> <!--  mis datos -->
+
+				    <table class="table table-hover table-sm ">
+				      <tr class="thead-dark">
+				        <th class="p-2">DNI</th>
+				        <th class="p-2">Nombre</th>
+				        <th class="p-2">Apellidos</th>
+				        <th class="p-2">Direccion</th>
+				        <th class="p-2">Correo</th>
+				        <th class="p-2">Telefono</th>
+				        <th class="p-2"></th>
+
+				      </tr>
+				      <tr>
+				        <td class="p-2" th:text="${cliente.dni}"></td>
+				        <td class="p-2" th:text="${cliente.nombre}"></td>
+				        <td class="p-2" th:text="${cliente.apellidos}"></td>
+				        <td class="p-2" th:text="${cliente.direccion}"></td>
+				        <td class="p-2" th:text="${cliente.correo}"></td>
+				        <td class="p-2" th:text="${cliente.telefono}"></td>
+				      	<td>
+				      		<a type="button" class="btn btn-info btn-sm" th:href="@{/cliente/editar/{id}(id=${cliente.dni})}">Editar</a>
+				      	</td>	
+				      </tr>
+				    </table>
+			  </div>
+			</div> 
+        </div><!--  fin de mis datos -->
+ 		<div class="col-1 float-right">
+        <div class="p-5">
+			<a type="button" class="btn btn-info btn-sm" th:href="@{/añadirVehiculo/{id}(id=${cliente.dni})}">añadir vehiculo</a>
+        </div>       
+      </div> 
+</body>
+</html>

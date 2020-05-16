@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Añadir vehiculo</title>
+<meta charset="utf-8">
+<title>AÃ±adir vehiculo</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -45,19 +45,19 @@
 								class="form-control" id="marca">
 						</div>
 						<div class="form-group col-md-12">
-							<label for="anio">año</label> <input type="number"
-								th:field="*{anio}" placeholder="inserta un año"
+							<label for="anio">aÃ±o</label> <input type="number"
+								th:field="*{anio}" placeholder="inserta un aÃ±o"
 								class="form-control" id="anio">
 						</div>
 						<div class="form-group col-md-12">
 							<label for="cliente">cliente</label> <input type="text"
-								th:field="${cliente}" name="cliente" placeholder="inserta un cliente"
-								class="form-control" id="cliente" hidden>
+								th:field="*{cliente}" th:value="${cliente.dni}" th:text="${cliente.dni}" name="cliente" placeholder="inserta un cliente"
+								class="form-control" id="cliente" >
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<input type="submit" value="Añadir"
+					<input type="submit" value="AÃ±adir"
 						class="btn btn-primary float-right">
 					<button data-dismiss="modal"
 						class="btn btn-outline-danger float-right mr-2">Cancelar</button>
