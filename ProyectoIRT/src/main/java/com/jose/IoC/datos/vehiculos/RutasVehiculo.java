@@ -47,27 +47,12 @@ public class RutasVehiculo {
 		ModelAndView mav = new ModelAndView();
 		
 		if(bindingResult.hasErrors()) {
-            mav.setViewName("redirect:/añadirVehiculo");
+            mav.setViewName("redirect:/elegirCliente");
             System.out.println("Error de bindingResult" + bindingResult.hasErrors());
         } else {
             mav.setViewName("redirect:/vehiculos");
             
             vehiculoDAO.save(vehiculo);
-            
-            Optional<Cliente>Lista =clienteDAO.findById(vehiculo.getCliente().getDni());
-			Cliente cliente =Lista.get();
-			
-			List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
-			
-			if(cliente.getListaVehiculos()!=null) {
-				listaVehiculos = cliente.getListaVehiculos();
-				
-			}
-			
-			listaVehiculos.add(vehiculo);
-			cliente.setListaVehiculos(listaVehiculos);
-			
-			clienteDAO.save(cliente);
           
         }
 		

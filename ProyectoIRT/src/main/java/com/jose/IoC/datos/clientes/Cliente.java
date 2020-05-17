@@ -3,6 +3,7 @@ package com.jose.IoC.datos.clientes;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +35,7 @@ public class Cliente {
 	private String telefono;
 	
 	
-	@OneToMany(fetch=FetchType.EAGER, mappedBy = "cliente")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy = "cliente" ,cascade = CascadeType.REMOVE)
 	private List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
 	
 	
@@ -98,8 +99,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion
-				+ ", correo=" + correo + ", telefono=" + telefono + ", listaVehiculos=" + listaVehiculos + "]";
+		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + "]";
 	}
 	
 	

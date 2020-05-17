@@ -26,7 +26,7 @@ public class Vehiculo {
 	
 
 	@ManyToOne
-	@JoinColumn(name="cliente_dni")
+	@JoinColumn(name="cliente_dni" )
 	private Cliente cliente = new Cliente();
 
 	public String getMatricula() {
