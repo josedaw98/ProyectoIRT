@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  	<meta name="description" content="Una web preciosa y maravillosa">
+  	<meta name="author" content="Jose Ramon Rojo Fernadez">
+
+  	<title>Trabajos</title>
+  
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+ 
+ 
+</head>
+<body id="page-top">
+
+
+  <!-- Header -->
+  <header class="masthead">
+
+ 
+    <div class=" container row p-5">
+      <div class="col-10"> 
+        <div class="mb-5"> <!--  mis datos -->
+			<div th:switch="${#lists.isEmpty(listaTrabajos)}">
+			  <div id="noHayNadie" th:case="true">
+			  		<p>No hay trabajos en la base de datos</p>
+			  </div>
+			  <div id="hayMensajes" th:case="false">
+				    <table class="table table-hover table-sm ">
+				      <tr class="thead-dark">
+				        <th class="p-2">Id</th>
+				        <th class="p-2">Titulo</th>
+				        <th class="p-2">Descripcion</th>
+				        <th class="p-2">Sucesos</th>
+				        <th class="p-2">Vehiculo</th>
+				        <th class="p-2"></th>
+				        <th class="p-2"></th>
+				      </tr>
+				      <tr  th:each="trabajo: ${listaTrabajos}">
+				        <td class="p-2" th:text="${trabajo.id}"></td>
+				        <td class="p-2" th:text="${trabajo.titulo}"></td>
+				        <td class="p-2" th:text="${trabajo.descripcion}"></td>
+				        <td class="p-2" th:text="${trabajo.sucesos}"></td>
+				        <td class="p-2" th:text="${trabajo.vehiculo.matricula}"></td>				          
+				        <td>
+				        	<a type="button" class="btn btn-danger btn-sm" data-toggle="modal" th:attr="data-target='#modal-warning'+${trabajo.id}">Eliminar</a>
+				      	</td>
+				      	<td>
+				      		<a type="button" class="btn btn-info btn-sm" th:href="@{/trabajo/editar/{id}(id=${trabajo.id})}">Editar</a>
+				      	</td>
+				      	 
+				      	<div class="modal modal-warning fade in" th:id="modal-warning+${trabajo.id}" >
+						    <div class="modal-dialog">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                    <span aria-hidden="true">×</span></button>
+						                <h5 class="modal-title">Borrar cliente</h5>
+						            </div>
+						            <div class="modal-body">
+						                <h3>Estas seguro que quieres borrar este cliente?</h3>
+						            </div>
+						            <div class="modal-footer">
+						                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
+						                <a type="button" class="btn btn-outline" th:href="@{/delete/trabajo/{id}(id=${trabajo.id})}"><i class="fa fa-check"></i>&nbsp;Yes</a>
+						            </div>
+						        </div>
+						    </div>
+						</div>	
+				      </tr>
+				    </table>
+			  </div>
+			</div> 
+        </div><!--  fin de mis datos -->
+        
+      </div>
+      <div class="col-1 float-right">
+        <div class="p-5">
+			<a type="button" class="btn btn-info btn-sm" th:href="@{/elegirVehiculo}">añadir</a>
+        </div>       
+      </div> 
+    </div>
+  </header>
+
+</body>
+</html>

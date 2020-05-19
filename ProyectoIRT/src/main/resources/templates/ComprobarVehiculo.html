@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Comprobar Vehiculo</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container row p-5 d-flex justify-content-center">
+		<div class="col-8">
+			<h4>Comporbar Vehiculo</h4>
+			<form action="#" th:action="@{/vehiculoComprobado}" th:object="${vehiculo}" method="post">
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label for="Matricula">Matricula</label> <input type="text" th:field="*{matricula}"
+							placeholder="inserta una Matricula" class="form-control" id="Matricula">
+					</div>
+				<div class="form-group col-md-12">
+					<input type="submit" value="Añadir"
+						class="btn btn-primary float-right"> <a type="button"
+						class="btn btn-danger" th:href="@{/elegirVehiculo}">atras</a>
+				</div>
+		</div>
+
+		</form>
+
+	</div>
+	</div>
+</body>
+</html>
