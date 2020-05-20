@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jose.IoC.datos.clientes.Cliente;
 import com.jose.IoC.datos.clientes.ClienteDAO;
+import com.jose.IoC.datos.marca.MarcaDAO;
 
 @Controller
 public class RutasVehiculo {
@@ -27,6 +28,9 @@ public class RutasVehiculo {
 	
 	@Autowired
 	ClienteDAO clienteDAO;
+	
+	@Autowired
+	MarcaDAO marcaDAO;
 	
 	
 	@GetMapping("/vehiculos")
@@ -141,6 +145,7 @@ public class RutasVehiculo {
 			cliente=Lista.get();
 			mav.addObject("cliente", cliente);
 			mav.addObject("vehiculo", new Vehiculo());
+			mav.addObject("listaMarcas",marcaDAO.findAll());
 			System.out.println(cliente);
 		}else {
 			mav.setViewName("NoEncontrado");

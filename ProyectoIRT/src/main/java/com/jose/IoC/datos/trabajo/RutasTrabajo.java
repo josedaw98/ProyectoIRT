@@ -16,6 +16,7 @@ import com.jose.IoC.datos.clientes.Cliente;
 import com.jose.IoC.datos.clientes.ClienteDAO;
 import com.jose.IoC.datos.vehiculos.Vehiculo;
 import com.jose.IoC.datos.vehiculos.VehiculoDAO;
+import com.jose.IoC.servcios.ServiciosId;
 
 @Controller
 public class RutasTrabajo {
@@ -25,6 +26,9 @@ public class RutasTrabajo {
 	
 	@Autowired
 	VehiculoDAO vehiculoDAO;
+	
+	@Autowired
+	ServiciosId servicios;
 	
 	
 	@GetMapping("/trabajos")
@@ -51,7 +55,7 @@ public class RutasTrabajo {
             System.out.println("Error de bindingResult" + bindingResult.hasErrors());
         } else {
             mav.setViewName("redirect:/trabajos");
-            
+            trabajo.setId(servicios.getIDTrabajo());
             trabajoDAO.save(trabajo);
           
         }

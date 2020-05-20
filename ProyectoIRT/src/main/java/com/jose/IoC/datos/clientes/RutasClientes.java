@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jose.IoC.datos.marca.MarcaDAO;
 import com.jose.IoC.datos.vehiculos.Vehiculo;
 import com.jose.IoC.datos.vehiculos.VehiculoDAO;
 
@@ -23,6 +24,9 @@ public class RutasClientes {
 	
 	@Autowired
 	ClienteDAO clienteDAO;
+	
+	@Autowired
+	MarcaDAO marcaDAO;
 	
 	
 	
@@ -65,6 +69,7 @@ public class RutasClientes {
             clienteDAO.save(cliente);
             mav.addObject("cliente",cliente);
             mav.addObject("vehiculo", new Vehiculo());
+            mav.addObject("listaMarcas",marcaDAO.findAll());
             System.out.println(cliente);
         }
 		
