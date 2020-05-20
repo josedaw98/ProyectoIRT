@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.jose.IoC.datos.clientes.Cliente;
+import com.jose.IoC.datos.marca.Marca;
 import com.jose.IoC.datos.trabajo.Trabajo;
 
 @Entity
@@ -26,8 +27,9 @@ public class Vehiculo {
 	@Column
 	private String bastidor;
 	
-	@Column
-	private String marca;
+	@ManyToOne
+	@JoinColumn(name="marca_id" )
+	private Marca marca = new Marca();
 	
 	@Column
 	private int anio;
@@ -61,11 +63,11 @@ public class Vehiculo {
 		this.bastidor = bastidor;
 	}
 
-	public String getMarca() {
+	public Marca getMarca() {
 		return marca;
 	}
 
-	public void setMarca(String marca) {
+	public void setMarca(Marca marca) {
 		this.marca = marca;
 	}
 

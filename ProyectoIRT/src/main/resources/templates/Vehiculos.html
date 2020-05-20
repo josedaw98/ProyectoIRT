@@ -48,7 +48,7 @@
 				      <tr th:each="vehiculo: ${listaVehiculos}">
 				        <td th:text="${vehiculo.matricula}"></td>
 				        <td th:text="${vehiculo.bastidor}"></td>
-				        <td th:text="${vehiculo.marca}"></td>
+				        <td th:text="${vehiculo.marca.nombre}"></td>
 				        <td th:text="${vehiculo.anio}"></td>
 				        <td th:text="${vehiculo.cliente.dni}"></td> 
 				          

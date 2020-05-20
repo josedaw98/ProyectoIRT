@@ -1,15 +1,19 @@
 package com.jose.IoC.datos.marca;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.jose.IoC.datos.modelos.Modelo;
+import com.jose.IoC.datos.vehiculos.Vehiculo;
 
 @Entity
 public class Marca {
@@ -24,7 +28,16 @@ public class Marca {
 	 @OneToMany(mappedBy = "marca")
 	 private List<Modelo> modelos;
 	 
-	 
+	 @OneToMany(fetch=FetchType.EAGER, mappedBy = "marca" ,cascade = CascadeType.REMOVE)
+	private List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+
+	public List<Vehiculo> getListaVehiculos() {
+		return listaVehiculos;
+	}
+
+	public void setListaVehiculos(List<Vehiculo> listaVehiculos) {
+		this.listaVehiculos = listaVehiculos;
+	}
 
 	public Integer getId() {
 		return id;
