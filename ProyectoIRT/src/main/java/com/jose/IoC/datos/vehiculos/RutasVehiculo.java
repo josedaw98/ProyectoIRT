@@ -75,6 +75,7 @@ public class RutasVehiculo {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("EditarVehiculo");
 		mav.addObject("vehiculo", vehiculo);
+		mav.addObject("listaMarcas",marcaDAO.findAll());
 
 		return mav;
 	}	

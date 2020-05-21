@@ -21,6 +21,18 @@ public class Modelo {
 	 @Column
 	 private String nombre;
 	 
+	 @Column
+	 private String combustible;
+	 
+	 @Column
+	 private Integer CV;
+	 
+	 @Column
+	 private Integer NM;
+	 
+	 @Column
+	 private String extras;
+	 
 	 @ManyToOne
 	 @JoinColumn(name="marca_nombre" )
 	 private Marca marca = new Marca();
@@ -48,10 +60,45 @@ public class Modelo {
 	public void setMarca(Marca marca) {
 		this.marca = marca;
 	}
+	
+	
+
+	public String getCombustible() {
+		return combustible;
+	}
+
+	public void setCombustible(String combustible) {
+		this.combustible = combustible;
+	}
+
+	public Integer getCV() {
+		return CV;
+	}
+
+	public void setCV(Integer cV) {
+		CV = cV;
+	}
+
+	public Integer getNM() {
+		return NM;
+	}
+
+	public void setNM(Integer nM) {
+		NM = nM;
+	}
+
+	public String getExtras() {
+		return extras;
+	}
+
+	public void setExtras(String extras) {
+		this.extras = extras;
+	}
 
 	@Override
 	public String toString() {
-		return "Modelo [id=" + id + ", nombre=" + nombre + ", marca=" + marca + "]";
+		return "Modelo [id=" + id + ", nombre=" + nombre + ", combustible=" + combustible + ", CV=" + CV + ", NM=" + NM
+				+ ", extras=" + extras + ", marca=" + marca + "]";
 	}
 	 
 	 
