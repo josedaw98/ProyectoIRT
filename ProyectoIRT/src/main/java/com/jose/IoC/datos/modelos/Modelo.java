@@ -12,30 +12,29 @@ import com.jose.IoC.datos.marca.Marca;
 
 @Entity
 public class Modelo {
-	
 
-	 @Id 
-	 @GeneratedValue(strategy=GenerationType.AUTO) 
-	 private Integer id;
-	 
-	 @Column
-	 private String nombre;
-	 
-	 @Column
-	 private String combustible;
-	 
-	 @Column
-	 private Integer CV;
-	 
-	 @Column
-	 private Integer NM;
-	 
-	 @Column
-	 private String extras;
-	 
-	 @ManyToOne
-	 @JoinColumn(name="marca_nombre" )
-	 private Marca marca = new Marca();
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+
+	@Column
+	private String nombre;
+
+	@Column
+	private String combustible;
+
+	@Column
+	private Integer CV;
+
+	@Column
+	private Integer NM;
+
+	@Column
+	private String extras;
+
+	@ManyToOne
+	@JoinColumn(name = "marca_nombre")
+	private Marca marca = new Marca();
 
 	public Integer getId() {
 		return id;
@@ -60,8 +59,6 @@ public class Modelo {
 	public void setMarca(Marca marca) {
 		this.marca = marca;
 	}
-	
-	
 
 	public String getCombustible() {
 		return combustible;
@@ -100,7 +97,5 @@ public class Modelo {
 		return "Modelo [id=" + id + ", nombre=" + nombre + ", combustible=" + combustible + ", CV=" + CV + ", NM=" + NM
 				+ ", extras=" + extras + ", marca=" + marca + "]";
 	}
-	 
-	 
 
 }

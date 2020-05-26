@@ -2,94 +2,165 @@
 <html>
 <head>
 
-  	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  	<meta name="description" content="Una web preciosa y maravillosa">
-  	<meta name="author" content="Jose Ramon Rojo Fernadez">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Una web preciosa y maravillosa">
+<meta name="author" content="Jose Ramon Rojo Fernadez">
 
-  	<title>Modelos</title>
-  
-  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<title>Modelos</title>
 
- 
- 
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+
+
+
 </head>
 <body id="page-top">
 
 
-  <!-- Header -->
-  <header class="masthead">
+	<!-- Header -->
+	<header class="masthead">
 
- 
-    <div class=" container-fluid row p-5">
-      <div class="col-10"> 
-        <div class="mb-5"> <!--  mis datos -->
-			<div th:switch="${#lists.isEmpty(listaClientes)}">
-			  <div id="noHayNadie" th:case="true">
-			  		<p>No hay clientes en la base de datos</p>
-			  </div>
-			  <div id="hayMensajes" th:case="false">
-				    <table class="table table-hover table-sm ">
-				      <tr class="thead-dark">
-				        <th class="p-2">ID</th>
-				        <th class="p-2">Nombre</th>
-				        <th class="p-2">CV</th>
-				        <th class="p-2">NM</th>
-				        <th class="p-2">Combustible</th>
-				        <th class="p-2">Extras</th>
-				        <th class="p-2"></th>
-				        <th class="p-2"></th>
-				      </tr>
-				      <tr  th:each="modelo: ${listaModelos}">
-				        <td class="p-2" th:text="${modelo.id}"></td>
-				        <td class="p-2" th:text="${modelo.nombre}"></td>
-				        <td class="p-2" th:text="${modelo.combustible}"></td>
-				        <td class="p-2" th:text="${modelo.CV}"></td>
-				        <td class="p-2" th:text="${modelo.NM}"></td>
-				        <td class="p-2" th:text="${modelo.extras}"></td>
-				          
-				        <td>
-				        	<a type="button" class="btn btn-danger btn-sm" data-toggle="modal" th:attr="data-target='#modal-warning'+${modelo.id}">Eliminar</a>
-				      	</td>
-				      	<td>
-				      		<a type="button" class="btn btn-info btn-sm" th:href="@{/modelo/editar/{id}(id=${modelo.id})}">Editar</a>
-				      	</td>
-				      	 
-				      	<div class="modal modal-warning fade in" th:id="modal-warning+${modelo.id}" >
-						    <div class="modal-dialog">
-						        <div class="modal-content">
-						            <div class="modal-header">
-						                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						                    <span aria-hidden="true">×</span></button>
-						                <h5 class="modal-title">Borrar modelo</h5>
-						            </div>
-						            <div class="modal-body">
-						                <h3>Estas seguro que quieres borrar este cliente?</h3>
-						            </div>
-						            <div class="modal-footer">
-						                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
-						                <a type="button" class="btn btn-outline" th:href="@{/delete/modelo/{id}(id=${modelo.id})}"><i class="fa fa-check"></i>&nbsp;Yes</a>
-						            </div>
-						        </div>
-						    </div>
-						</div>	
-				      </tr>
-				    </table>
-			  </div>
-			</div> 
-        </div><!--  fin de mis datos -->
-        
-      </div>
-      <div class="col-1 float-right">
-        <div class="p-5">
-			<a type="button" class="btn btn-info btn-sm" th:href="@{/añadirModelo}">añadir</a>
-        </div>       
-      </div> 
-    </div>
-  </header>
+
+		<div class=" container-fluid row p-5">
+			<div class="col-12">
+				<nav class="navbar navbar-expand bg-dark d-none d-md-block">
+
+					<!-- Links -->
+					<ul class="navbar-nav">
+						<li class="nav-item"><img th:src="@{imagenes/logoFondo.jpg}"
+							style="width: 20%;" /></li>
+						<li class="nav-item"><a class="nav-link text-white"
+							th:href="@{/vehiculos}">Vehiculos</a></li>
+						<li class="nav-item"><a class="nav-link text-white"
+							th:href="@{/clientes}">Clientes</a></li>
+						<li class="nav-item"><a class="nav-link text-white"
+							th:href="@{/trabajos}">Trabajos</a></li>
+						<li class="nav-item"><a class="nav-link text-white"
+							th:href="@{/modelos}">Reprogramaciones</a></li>
+						<li class="nav-item"><a class="nav-link text-white"
+							th:href="@{/marcas}">Marcas</a></li>
+					</ul>
+
+				</nav>
+				<nav
+					class="navbar navbar-expand-md bg-dark navbar-dark d-block d-md-none">
+					<!-- Brand -->
+
+
+					<!-- Toggler/collapsibe Button -->
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#collapsibleNavbar">
+						<img th:src="@{imagenes/logoFondo.jpg}" style="width: 30%;" />
+					</button>
+
+					<!-- Navbar links -->
+					<div class="collapse navbar-collapse" id="collapsibleNavbar">
+						<ul class="navbar-nav">
+							<li class="nav-item"><a class="nav-link text-white"
+								th:href="@{/vehiculos}">Vehiculos</a></li>
+							<li class="nav-item"><a class="nav-link text-white"
+								th:href="@{/clientes}">Clientes</a></li>
+							<li class="nav-item"><a class="nav-link text-white"
+								th:href="@{/trabajos}">Trabajos</a></li>
+							<li class="nav-item"><a class="nav-link text-white"
+								th:href="@{/modelos}">Reprogramaciones</a></li>
+							<li class="nav-item"><a class="nav-link text-white"
+								th:href="@{/marcas}">Marcas</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="col-12 col-md-10">
+				<div class="mb-5">
+					<!--  mis datos -->
+					<div th:switch="${#lists.isEmpty(listaModelos)}">
+						<div id="noHayNadie" th:case="true">
+							<p>No hay clientes en la base de datos</p>
+						</div>
+						<div id="hayMensajes" th:case="false">
+							<table class="table table-hover table-sm ">
+								<tr class="thead-dark">
+									<th>ID</th>
+									<th>Marca</th>
+									<th>Nombre</th>
+									<th>CV</th>
+									<th>NM</th>
+									<th>Combustible</th>
+									<th>Extras</th>
+									<th></th>
+									<th></th>
+								</tr>
+								<tr th:each="modelo: ${listaModelos}">
+									<td th:text="${modelo.id}"></td>
+									<td th:text="${modelo.marca.nombre}"></td>
+									<td th:text="${modelo.nombre}"></td>
+									<td th:text="${modelo.combustible}"></td>
+									<td th:text="${modelo.CV}"></td>
+									<td th:text="${modelo.NM}"></td>
+									<td th:text="${modelo.extras}"></td>
+
+									<td><a type="button" class="btn btn-danger btn-sm"
+										data-toggle="modal"
+										th:attr="data-target='#modal-warning'+${modelo.id}">Eliminar</a>
+									</td>
+									<td><a type="button" class="btn btn-info btn-sm"
+										th:href="@{/modelo/editar/{id}(id=${modelo.id})}">Editar</a></td>
+
+									<div class="modal modal-warning fade in"
+										th:id="modal-warning+${modelo.id}">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">×</span>
+													</button>
+													<h5 class="modal-title">Borrar modelo</h5>
+												</div>
+												<div class="modal-body">
+													<h3>Estas seguro que quieres borrar este cliente?</h3>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-outline pull-left"
+														data-dismiss="modal">Cerrar</button>
+													<a type="button" class="btn btn-outline"
+														th:href="@{/delete/modelo/{id}(id=${modelo.id})}"><i
+														class="fa fa-check"></i>&nbsp;Yes</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!--  fin de mis datos -->
+
+			</div>
+			<div class="col-1 float-right">
+				<div class="p-5">
+					<a type="button" class="btn btn-info btn-sm"
+						th:href="@{/añadirModelo}">añadir</a>
+				</div>
+			</div>
+		</div>
+	</header>
 
 </body>
 </html>
