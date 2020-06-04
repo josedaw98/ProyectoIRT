@@ -30,6 +30,8 @@ public class Marca {
 	 
 	 @OneToMany(fetch=FetchType.EAGER, mappedBy = "marca" ,cascade = CascadeType.REMOVE)
 	private List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+	 
+	 
 
 	public List<Vehiculo> getListaVehiculos() {
 		return listaVehiculos;

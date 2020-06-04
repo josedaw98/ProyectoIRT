@@ -3,10 +3,45 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Error en el borrado</title>
+<link rel="stylesheet" href="documentos/estilos.css">
+<script type="text/javascript" src="documentos/JavaScript.js"></script>
 </head>
 <body>
-
-<h1>Error en el borrado , el vehiculo con matricula <span th:text="${id}">matricula</span> no ha sido encontrado</h1>
+    			<div class="col-12 mb-5">
+				<nav class="navbar navbar-expand-lg navbar-mainbg">
+		<a class="navbar-brand navbar-logo" th:href="@{/inicio}"><img
+			th:src="@{imagenes/logoFondo.jpg}" width="100px" height="25%"
+			class="d-inline-block align-top" alt=""></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<i class="fas fa-bars text-white"></i>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto mr-1">
+				<div class="hori-selector">
+					<div class="left"></div>
+					<div class="right"></div>
+				</div>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/vehiculos}"><i class="fas fa-tachometer-alt"></i>Vehiculos</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/clientes}"><i
+						class="far fa-address-book"></i>Clientes</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/trabajos}"><i
+						class="far fa-clone"></i>Trabajos</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/modelos}"><i
+						class="far fa-calendar-alt"></i>Modelos</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/marcas}"><i
+						class="far fa-chart-bar"></i>Marcas</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/marcas}"><i
+						class="far fa-chart-bar"></i>cerrar sesion</a></li>
+			</ul>
+		</div>
+	</nav>
+			</div>
+<h1>Error en el borrado , el elemento con id  <span th:text="${id}">matricula</span> no ha sido encontrado</h1>
 
 </body>
 </html>

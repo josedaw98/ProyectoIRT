@@ -67,7 +67,7 @@ public class RutasModelos {
 		
 	}
 	@GetMapping("/modelo/editar/{id}")
-	public ModelAndView clienteEditar(@PathVariable Integer id) {
+	public ModelAndView modeloEditar(@PathVariable Integer id) {
 
 		
 		
@@ -82,7 +82,7 @@ public class RutasModelos {
 	}
 	
 	@PostMapping("/modelo/editar")
-	public ModelAndView clienteEditar(@ModelAttribute("modelo") Modelo modelo,  
+	public ModelAndView modeloEditado(@ModelAttribute("modelo") Modelo modelo,  
 						BindingResult bindingResult) {
 		
 		
@@ -101,7 +101,7 @@ public class RutasModelos {
 	}
 	
 	@GetMapping("/delete/modelo/{id}")
-	public ModelAndView BorrarVehiculos(@PathVariable Integer id) {
+	public ModelAndView BorrarModelo(@PathVariable Integer id) {
 		
 		ModelAndView mav = new ModelAndView();
 	     if (modeloDAO.existsById(id)) {
@@ -114,6 +114,25 @@ public class RutasModelos {
 		return mav;
 		
 	}
+	
+	
+	@GetMapping("modelo/reprogramacion/{id}")
+	public ModelAndView verReprogramcion(@PathVariable Integer id) {
+		
+		ModelAndView mav = new ModelAndView();
+	     if (modeloDAO.existsById(id)) {
+	    	
+	    	 mav.addObject("nombre",  modeloDAO.findById(id).get().getNombre());
+	    	 mav.addObject("reprogramacion",  modeloDAO.findById(id).get().getReprogramacion());
+	    	 mav.setViewName("VerReprogramacion");
+	     }else {
+	    	 mav.setViewName("redirect:/modelos");
+	    	 
+	     }
+		return mav;
+		
+	}
+	
 	
 	
 	

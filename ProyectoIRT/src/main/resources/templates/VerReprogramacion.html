@@ -2,7 +2,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Comprobar Vehiculo</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Una web preciosa y maravillosa">
+<meta name="author" content="Jose Ramon Rojo Fernadez">
+<title>Reprogramacion</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -20,25 +24,15 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container row p-5 d-flex justify-content-center">
-		<div class="col-8">
-			<h4>Comprobar Vehiculo</h4>
-			<form action="#" th:action="@{/vehiculoComprobado}" th:object="${vehiculo}" method="post">
-				<div class="form-row">
-					<div class="form-group col-md-12">
-						<label for="Matricula">Matricula</label> <input type="text" th:field="*{matricula}"
-							placeholder="inserta una Matricula" class="form-control" id="Matricula">
-					</div>
-				<div class="form-group col-md-12">
-					<input type="submit" value="Añadir"
-						class="btn btn-primary float-right"> <a type="button"
-						class="btn btn-danger" th:href="@{/elegirVehiculo}">atras</a>
-				</div>
-		</div>
+	<h1 class="m-3">
+		Reprogramacion modelo <span th:text="${nombre}"> modelo</span>
+	</h1>
 
-		</form>
+	<p class="rounded border border-dark p-3 m-3 w-50">
+		<span th:text="${reprogramacion}"> texto</span>
+	</p>
 
-	</div>
-	</div>
+	<a type="button" class="btn btn-danger m-3" th:href="@{/modelos}">volver</a>
+
 </body>
 </html>

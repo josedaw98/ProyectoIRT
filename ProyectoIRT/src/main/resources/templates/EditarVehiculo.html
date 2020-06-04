@@ -55,6 +55,15 @@
 								th:value="${marca.id}" th:text="${marca.nombre}"></option>
 						</select>
 					</div>
+					<div class="form-group col-md-12">
+							<label for="modelo">modelo</label> <select th:field="*{modelo}"
+								class="selectpicker" data-live-search="true">
+								<option data-tokens="" value="" Selected>-------</option>
+								<option data-tokens=" " th:each="modelo: ${listaModelos}"
+									th:value="${modelo.id}" th:text="${modelo.nombre}"></option>
+							</select>
+
+						</div>
 						<div class="form-group col-md-12">
 							<label for="anio">año</label> <input type="number"
 								th:field="*{anio}" placeholder="inserta un año"

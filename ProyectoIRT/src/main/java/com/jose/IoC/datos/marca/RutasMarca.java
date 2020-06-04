@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jose.IoC.datos.clientes.Cliente;
+import com.jose.IoC.datos.modelos.Modelo;
 import com.jose.IoC.datos.modelos.ModeloDAO;
 import com.jose.IoC.datos.trabajo.Trabajo;
 import com.jose.IoC.datos.vehiculos.Vehiculo;
@@ -49,7 +50,7 @@ public class RutasMarca {
 	public ModelAndView AñadirClientes(){
 		
 		ModelAndView mav = new ModelAndView();		
-		mav.setViewName("AñadirModelo");
+		mav.setViewName("AñadirMarca");
 		mav.addObject("marca",new Marca());
 		
 		return mav;
@@ -63,7 +64,7 @@ public class RutasMarca {
             mav.setViewName("redirect:/añadirMarca");
             System.out.println("Error de bindingResult" + bindingResult.hasErrors());
         } else {
-            mav.setViewName("Marcas");
+            mav.setViewName("redirect:/marcas");
             marcaDAO.save(marca);
             System.out.println(marca);
         }
@@ -121,16 +122,6 @@ public class RutasMarca {
 		
 	}
 	
-	@GetMapping("/marca/modelos/{id}")
-	public ModelAndView VerModelosMarca(@PathVariable Integer id) {
-		
-		ModelAndView mav = new ModelAndView();
-	     if (marcaDAO.existsById(id)) {
-	    	
-	    	 mav.setViewName("redirect:/marcas");
-	     }
-		return mav;
-		
-	}
+
 
 }

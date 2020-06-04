@@ -20,6 +20,54 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+    			<div class="col-12 mb-5">
+				<nav class="navbar navbar-expand bg-dark d-none d-md-block">
+
+					<!-- Links -->
+					<ul class="navbar-nav">
+						<li class="nav-item"><img th:src="@{imagenes/logoFondo.jpg}"
+							style="width: 20%;" /></li>
+						<li class="nav-item"><a class="nav-link text-white"
+							th:href="@{/vehiculos}">Vehiculos</a></li>
+						<li class="nav-item"><a class="nav-link text-white"
+							th:href="@{/clientes}">Clientes</a></li>
+						<li class="nav-item"><a class="nav-link text-white"
+							th:href="@{/trabajos}">Trabajos</a></li>
+						<li class="nav-item"><a class="nav-link text-white"
+							th:href="@{/modelos}">Reprogramaciones</a></li>
+						<li class="nav-item"><a class="nav-link text-white"
+							th:href="@{/marcas}">Marcas</a></li>
+					</ul>
+
+				</nav>
+				<nav
+					class="navbar navbar-expand bg-dark navbar-dark d-block d-md-none">
+					<!-- Brand -->
+
+
+					<!-- Toggler/collapsibe Button -->
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#collapsibleNavbar">
+						<img th:src="@{imagenes/logoFondo.jpg}" style="width: 30%;" />
+					</button>
+
+					<!-- Navbar links -->
+					<div class="collapse navbar-collapse" id="collapsibleNavbar">
+						<ul class="navbar-nav">
+							<li class="nav-item"><a class="nav-link text-white"
+								th:href="@{/vehiculos}">Vehiculos</a></li>
+							<li class="nav-item"><a class="nav-link text-white"
+								th:href="@{/clientes}">Clientes</a></li>
+							<li class="nav-item"><a class="nav-link text-white"
+								th:href="@{/trabajos}">Trabajos</a></li>
+							<li class="nav-item"><a class="nav-link text-white"
+								th:href="@{/modelos}">Reprogramaciones</a></li>
+							<li class="nav-item"><a class="nav-link text-white"
+								th:href="@{/marcas}">Marcas</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
 <h1>El cliente no fue encontrado</h1>
 	<div class="container row p-5 d-flex justify-content-center">
 		<div class="col-6">

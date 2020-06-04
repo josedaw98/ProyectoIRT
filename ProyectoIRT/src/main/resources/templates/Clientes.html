@@ -2,94 +2,152 @@
 <html>
 <head>
 
-  	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  	<meta name="description" content="Una web preciosa y maravillosa">
-  	<meta name="author" content="Jose Ramon Rojo Fernadez">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Una web preciosa y maravillosa">
+<meta name="author" content="Jose Ramon Rojo Fernadez">
 
-  	<title>Clientes</title>
-  
-  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<title>Clientes</title>
 
- 
- 
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+	crossorigin="anonymous" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="documentos/estilos.css">
+<script type="text/javascript" src="documentos/JavaScript.js"></script>
 </head>
 <body id="page-top">
 
 
-  <!-- Header -->
-  <header class="masthead">
+	<!-- Header -->
+	<header class="masthead">
+		<div class="container-fluid">
+			<div class="row p-5 d-flex justify-content-center">
+				<div class="col-12">
+					<nav class="navbar navbar-expand-lg navbar-mainbg">
+						<a class="navbar-brand navbar-logo" th:href="@{/inicio}"><img
+							th:src="@{imagenes/logoFondo.jpg}" width="100px" height="25%"
+							class="d-inline-block align-top" alt=""></a>
+						<button class="navbar-toggler" type="button"
+							data-toggle="collapse" data-target="#navbarSupportedContent"
+							aria-controls="navbarSupportedContent" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<i class="fas fa-bars text-white"></i>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav ml-auto mr-1">
+								<div class="hori-selector">
+									<div class="left"></div>
+									<div class="right"></div>
+								</div>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/vehiculos}"><i class="fas fa-tachometer-alt"></i>Vehiculos</a>
+								</li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/clientes}"><i class="far fa-address-book"></i>Clientes</a></li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/trabajos}"><i class="far fa-clone"></i>Trabajos</a></li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/modelos}"><i class="far fa-calendar-alt"></i>Modelos</a></li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/marcas}"><i class="far fa-chart-bar"></i>Marcas</a></li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/marcas}"><i class="far fa-chart-bar"></i>cerrar
+										sesion</a></li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+				<div class="col-12">
+					<div class="mb-5">
+						<!--  mis datos -->
+						<div th:switch="${#lists.isEmpty(listaClientes)}">
+							<div id="noHayNadie" th:case="true" class="table-responsive text-nowrap">
+								<p>No hay clientes en la base de datos</p>
+							</div>
+							<div class="table-resposive">
+								<div id="hayMensajes" th:case="false">
+									<table class="table table-hover table-sm ">
+										<tr class="thead-dark">
+											<th class="p-2">DNI</th>
+											<th class="p-2">Nombre</th>
+											<th class="p-2">Apellidos</th>
+											<th class="p-2">Direccion</th>
+											<th class="p-2">Correo</th>
+											<th class="p-2">Telefono</th>
+											<th class="p-2"></th>
+											<th class="p-2"></th>
+										</tr>
+										<tr th:each="cliente: ${listaClientes}">
+											<td class="p-2" th:text="${cliente.dni}"></td>
+											<td class="p-2" th:text="${cliente.nombre}"></td>
+											<td class="p-2" th:text="${cliente.apellidos}"></td>
+											<td class="p-2" th:text="${cliente.direccion}"></td>
+											<td class="p-2" th:text="${cliente.correo}"></td>
+											<td class="p-2" th:text="${cliente.telefono}"></td>
 
- 
-    <div class=" container-fluid row p-5">
-      <div class="col-10"> 
-        <div class="mb-5"> <!--  mis datos -->
-			<div th:switch="${#lists.isEmpty(listaClientes)}">
-			  <div id="noHayNadie" th:case="true">
-			  		<p>No hay clientes en la base de datos</p>
-			  </div>
-			  <div id="hayMensajes" th:case="false">
-				    <table class="table table-hover table-sm ">
-				      <tr class="thead-dark">
-				        <th class="p-2">DNI</th>
-				        <th class="p-2">Nombre</th>
-				        <th class="p-2">Apellidos</th>
-				        <th class="p-2">Direccion</th>
-				        <th class="p-2">Correo</th>
-				        <th class="p-2">Telefono</th>
-				        <th class="p-2"></th>
-				        <th class="p-2"></th>
-				      </tr>
-				      <tr  th:each="cliente: ${listaClientes}">
-				        <td class="p-2" th:text="${cliente.dni}"></td>
-				        <td class="p-2" th:text="${cliente.nombre}"></td>
-				        <td class="p-2" th:text="${cliente.apellidos}"></td>
-				        <td class="p-2" th:text="${cliente.direccion}"></td>
-				        <td class="p-2" th:text="${cliente.correo}"></td>
-				        <td class="p-2" th:text="${cliente.telefono}"></td>
-				          
-				        <td>
-				        	<a type="button" class="btn btn-danger btn-sm" data-toggle="modal" th:attr="data-target='#modal-warning'+${cliente.dni}">Eliminar</a>
-				      	</td>
-				      	<td>
-				      		<a type="button" class="btn btn-info btn-sm" th:href="@{/cliente/editar/{id}(id=${cliente.dni})}">Editar</a>
-				      	</td>
-				      	 
-				      	<div class="modal modal-warning fade in" th:id="modal-warning+${cliente.dni}" >
-						    <div class="modal-dialog">
-						        <div class="modal-content">
-						            <div class="modal-header">
-						                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						                    <span aria-hidden="true">×</span></button>
-						                <h5 class="modal-title">Borrar cliente</h5>
-						            </div>
-						            <div class="modal-body">
-						                <h3>Estas seguro que quieres borrar este cliente?</h3>
-						            </div>
-						            <div class="modal-footer">
-						                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
-						                <a type="button" class="btn btn-outline" th:href="@{/delete/cliente/{id}(id=${cliente.dni})}"><i class="fa fa-check"></i>&nbsp;Yes</a>
-						            </div>
-						        </div>
-						    </div>
-						</div>	
-				      </tr>
-				    </table>
-			  </div>
-			</div> 
-        </div><!--  fin de mis datos -->
-        
-      </div>
-      <div class="col-1 float-right">
-        <div class="p-5">
-			<a type="button" class="btn btn-info btn-sm" th:href="@{/añadirCliente}">añadir</a>
-        </div>       
-      </div> 
-    </div>
-  </header>
+											<td class="p-2"><a type="button" class="btn btn-danger btn-sm"
+												data-toggle="modal"
+												th:attr="data-target='#modal-warning'+${cliente.dni}">Eliminar</a>
+											</td>
+											<td class="p-2"><a type="button" class="btn btn-info btn-sm"
+												th:href="@{/cliente/editar/{id}(id=${cliente.dni})}">Editar</a>
+											</td>
+
+											<div class="modal modal-warning fade in"
+												th:id="modal-warning+${cliente.dni}">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Close">
+																<span aria-hidden="true">×</span>
+															</button>
+															<h5 class="modal-title">Borrar cliente</h5>
+														</div>
+														<div class="modal-body">
+															<h3>Estas seguro que quieres borrar este cliente?</h3>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-outline pull-left"
+																data-dismiss="modal">Cerrar</button>
+															<a type="button" class="btn btn-outline"
+																th:href="@{/delete/cliente/{id}(id=${cliente.dni})}"><i
+																class="fa fa-check"></i>&nbsp;Yes</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--  fin de mis datos -->
+				</div>
+			</div>
+		</div>
+	</header>
 
 </body>
 </html>

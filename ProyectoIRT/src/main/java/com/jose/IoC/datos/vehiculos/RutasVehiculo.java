@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jose.IoC.datos.clientes.Cliente;
 import com.jose.IoC.datos.clientes.ClienteDAO;
 import com.jose.IoC.datos.marca.MarcaDAO;
+import com.jose.IoC.datos.modelos.Modelo;
+import com.jose.IoC.datos.modelos.ModeloDAO;
 
 @Controller
 public class RutasVehiculo {
@@ -32,6 +34,9 @@ public class RutasVehiculo {
 	@Autowired
 	MarcaDAO marcaDAO;
 	
+	@Autowired
+	ModeloDAO modeloDAO;
+	
 	
 	@GetMapping("/vehiculos")
 	public ModelAndView VerVehiculos() {
@@ -44,7 +49,6 @@ public class RutasVehiculo {
 		return mav;
 	}
 	
-
 	
 	@PostMapping("/addVehiculo")
 	public ModelAndView addPersona(@ModelAttribute Vehiculo vehiculo, BindingResult bindingResult) {
@@ -76,6 +80,10 @@ public class RutasVehiculo {
 		mav.setViewName("EditarVehiculo");
 		mav.addObject("vehiculo", vehiculo);
 		mav.addObject("listaMarcas",marcaDAO.findAll());
+		mav.addObject("listaModelos", modeloDAO.findAll());
+
+		
+		
 
 		return mav;
 	}	
@@ -147,6 +155,7 @@ public class RutasVehiculo {
 			mav.addObject("cliente", cliente);
 			mav.addObject("vehiculo", new Vehiculo());
 			mav.addObject("listaMarcas",marcaDAO.findAll());
+			mav.addObject("listaModelos",modeloDAO.findAll());
 			System.out.println(cliente);
 		}else {
 			mav.setViewName("NoEncontrado");

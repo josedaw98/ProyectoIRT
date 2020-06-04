@@ -45,9 +45,20 @@
 								class="form-control" id="Nombre">
 						</div>
 						<div class="form-group col-md-12">
-							<label for="Combustible">Combustible</label> <input type="text"
-								th:field="*{combustible}" placeholder="inserta un nombre"
-								class="form-control" id="Nombre">
+							<label for="Combustible">Combustible</label> <select
+								th:field="*{combustible}" id="Combustible">
+								<option th:value="Gasolina" th:text="Gasolina"></option>
+								<option th:value="Diesel" th:text="Diesel"></option>
+								<option th:value="Electrico" th:text="Electrico"></option>
+								<option th:value="Hibrido" th:text="Hibrido"></option>
+							</select>
+
+						</div>
+						<div class="form-group col-md-12">
+							<label for="Reprogramacion">Reprogramacion</label> <input
+								type="text" th:field="*{reprogramacion}"
+								placeholder="inserta un Reprogramacion" class="form-control"
+								id="Reprogramacion">
 						</div>
 						<div class="form-group col-md-12">
 							<label for="marca">marca</label> <select th:field="*{marca}"
@@ -59,14 +70,21 @@
 
 						</div>
 						<div class="form-group col-md-12">
-							<label for="CV">CV</label> <input type="number"
-								th:field="*{CV}" placeholder="inserta un  CV"
-								class="form-control" id="CV">
+							<label for="modelo">modelo</label> <select th:field="*{modelo}"
+								class="selectpicker" data-live-search="true">
+								<option data-tokens="" value="" Selected>-------</option>
+								<option data-tokens=" " th:each="modelo: ${listaModelos}"
+									th:value="${modelo.id}" th:text="${modelo.nombre}"></option>
+							</select>
+
 						</div>
 						<div class="form-group col-md-12">
-							<label for="NM">NM</label> <input type="number"
-								th:field="*{NM}" placeholder="inserta un NM"
-								class="form-control" id="NM">
+							<label for="CV">CV</label> <input type="number" th:field="*{CV}"
+								placeholder="inserta un  CV" class="form-control" id="CV">
+						</div>
+						<div class="form-group col-md-12">
+							<label for="NM">NM</label> <input type="number" th:field="*{NM}"
+								placeholder="inserta un NM" class="form-control" id="NM">
 						</div>
 						<div class="form-group col-md-12">
 							<label for="Extras">Extras</label> <input type="text"
