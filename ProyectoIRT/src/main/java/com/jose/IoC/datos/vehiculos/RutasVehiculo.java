@@ -50,7 +50,7 @@ public class RutasVehiculo {
 	}
 	
 	
-	@PostMapping("/addVehiculo")
+	@PostMapping("/vehiculos/add")
 	public ModelAndView addPersona(@ModelAttribute Vehiculo vehiculo, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -108,7 +108,7 @@ public class RutasVehiculo {
 	}
 	
 	
-	@GetMapping("/delete/vehiculo/{id}")
+	@GetMapping("/vehiculos/delete/{id}")
 	public ModelAndView BorrarVehiculos(@PathVariable String id) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -143,7 +143,7 @@ public class RutasVehiculo {
 		return mav;
 	}
 	
-	@PostMapping("/clienteComprobado")
+	@PostMapping("/clientes/Comprobado")
 	public ModelAndView ClienteComprobado(@ModelAttribute Cliente cliente){
 		
 		ModelAndView mav = new ModelAndView();

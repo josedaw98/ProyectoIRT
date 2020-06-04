@@ -33,8 +33,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="documentos/estilos.css">
-<script type="text/javascript" src="documentos/JavaScript.js"></script>
+
 </head>
 <body id="page-top">
 
@@ -42,9 +41,10 @@
 	<!-- Header -->
 	<header class="masthead">
 		<div class="container-fluid">
-			<div class="row p-5 d-flex justify-content-center">
+			<div class="row d-flex justify-content-center">
 				<div class="col-12">
-					<nav class="navbar navbar-expand-lg navbar-mainbg">
+					<nav
+						class="navbar navbar-expand-lg navbar-mainbg bg-dark text-primary">
 						<a class="navbar-brand navbar-logo" th:href="@{/inicio}"><img
 							th:src="@{imagenes/logoFondo.jpg}" width="100px" height="25%"
 							class="d-inline-block align-top" alt=""></a>
@@ -61,7 +61,7 @@
 									<div class="right"></div>
 								</div>
 								<li class="nav-item"><a class="nav-link"
-									th:href="@{/vehiculos}"><i class="fas fa-tachometer-alt"></i>Vehiculos</a>
+									th:href="@{/vehiculos}"><i class="fas fa-tachometer-alt"></i>Vehículos</a>
 								</li>
 								<li class="nav-item"><a class="nav-link"
 									th:href="@{/clientes}"><i class="far fa-address-book"></i>Clientes</a></li>
@@ -71,21 +71,31 @@
 									th:href="@{/modelos}"><i class="far fa-calendar-alt"></i>Modelos</a></li>
 								<li class="nav-item"><a class="nav-link"
 									th:href="@{/marcas}"><i class="far fa-chart-bar"></i>Marcas</a></li>
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/marcas}"><i class="far fa-chart-bar"></i>cerrar
-										sesion</a></li>
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">Dropdown</a>
+									<div class="dropdown-menu dropdown-primary"
+										aria-labelledby="navbarDropdownMenuLink">
+										<a class="dropdown-item text-primary" href="#">perfil</a> <a
+											class="dropdown-item text-primary" href="#">usuarios</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item text-danger" href="#">cerrar
+											sesion</a>
+									</div></li>
 							</ul>
 						</div>
 					</nav>
 				</div>
-				<div class="col-10">
+				<div class="col-12">
 					<div class="mb-5">
 						<!--  mis datos -->
 						<div th:switch="${#lists.isEmpty(listaMarcas)}">
 							<div id="noHayNadie" th:case="true">
 								<p>No hay marcas en la base de datos</p>
 							</div>
-							<div id="hayMensajes" th:case="false" class="table-responsive text-nowrap">
+							<div id="hayMensajes" th:case="false"
+								class="table-responsive text-nowrap">
 								<table class="table table-hover table-sm ">
 									<tr class="thead-dark">
 										<th class="p-2">ID</th>
@@ -102,7 +112,7 @@
 										</td>
 										<td class="p-2"><a type="button"
 											class="btn btn-info btn-sm"
-											th:href="@{/marca/editar/{id}(id=${marca.id})}">Editar</a></td>
+											th:href="@{/marcas/editar/{id}(id=${marca.id})}">Editar</a></td>
 
 										<div class="modal modal-warning fade in"
 											th:id="modal-warning+${marca.id}">
@@ -122,7 +132,7 @@
 														<button type="button" class="btn btn-outline pull-left"
 															data-dismiss="modal">Cerrar</button>
 														<a type="button" class="btn btn-outline"
-															th:href="@{/delete/marca/{id}(id=${marca.id})}"><i
+															th:href="@{/marcas/delete/{id}(id=${marca.id})}"><i
 															class="fa fa-check"></i>&nbsp;Yes</a>
 													</div>
 												</div>
@@ -138,7 +148,7 @@
 				</div>
 				<div class="col-12">
 					<div class="d-flex justify-content-end mt-2">
-						<a type="button" class="btn btn-primary" th:href="@{/añadirMarca}">Nueva
+						<a type="button" class="btn btn-primary" th:href="@{/marcas/añadir}">Nueva
 							Marca</a>
 					</div>
 				</div>

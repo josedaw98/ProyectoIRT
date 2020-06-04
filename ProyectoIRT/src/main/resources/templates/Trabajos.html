@@ -33,8 +33,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="documentos/estilos.css">
-<script type="text/javascript" src="documentos/JavaScript.js"></script>
+
 </head>
 <body id="page-top">
 
@@ -42,41 +41,48 @@
 	<!-- Header -->
 	<header class="masthead">
 		<div class="container-fluid">
-			<div class="row p-5 d-flex justify-content-center">
+			<div class="row d-flex justify-content-center">
 				<div class="col-12">
-					<nav class="navbar navbar-expand-lg navbar-mainbg">
-						<a class="navbar-brand navbar-logo" th:href="@{/inicio}"><img
-							th:src="@{imagenes/logoFondo.jpg}" width="100px" height="25%"
-							class="d-inline-block align-top" alt=""></a>
-						<button class="navbar-toggler" type="button"
-							data-toggle="collapse" data-target="#navbarSupportedContent"
-							aria-controls="navbarSupportedContent" aria-expanded="false"
-							aria-label="Toggle navigation">
-							<i class="fas fa-bars text-white"></i>
-						</button>
-						<div class="collapse navbar-collapse" id="navbarSupportedContent">
-							<ul class="navbar-nav ml-auto mr-1">
-								<div class="hori-selector">
-									<div class="left"></div>
-									<div class="right"></div>
-								</div>
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/vehiculos}"><i class="fas fa-tachometer-alt"></i>Vehiculos</a>
-								</li>
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/clientes}"><i class="far fa-address-book"></i>Clientes</a></li>
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/trabajos}"><i class="far fa-clone"></i>Trabajos</a></li>
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/modelos}"><i class="far fa-calendar-alt"></i>Modelos</a></li>
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/marcas}"><i class="far fa-chart-bar"></i>Marcas</a></li>
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/marcas}"><i class="far fa-chart-bar"></i>cerrar
-										sesion</a></li>
-							</ul>
-						</div>
-					</nav>
+						<nav class="navbar navbar-expand-lg navbar-mainbg bg-dark text-primary">
+		<a class="navbar-brand navbar-logo" th:href="@{/inicio}"><img
+			th:src="@{imagenes/logoFondo.jpg}" width="100px" height="25%"
+			class="d-inline-block align-top" alt=""></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<i class="fas fa-bars text-white"></i>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto mr-1">
+				<div class="hori-selector">
+					<div class="left"></div>
+					<div class="right"></div>
+				</div>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/vehiculos}"><i class="fas fa-tachometer-alt"></i>Vehículos</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/clientes}"><i
+						class="far fa-address-book"></i>Clientes</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/trabajos}"><i
+						class="far fa-clone"></i>Trabajos</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/modelos}"><i
+						class="far fa-calendar-alt"></i>Modelos</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/marcas}"><i
+						class="far fa-chart-bar"></i>Marcas</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+					<div class="dropdown-menu dropdown-primary"
+						aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item text-primary" href="#">perfil</a> <a
+							class="dropdown-item text-primary" href="#">usuarios</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item text-danger" href="#">cerrar sesion</a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>
 				</div>
 				<div class="col-12">
 					<div class="mb-5">
@@ -107,7 +113,7 @@
 											th:attr="data-target='#modal-warning'+${trabajo.id}">Eliminar</a>
 										</td>
 										<td class="p-2"><a type="button" class="btn btn-info btn-sm"
-											th:href="@{/trabajo/editar/{id}(id=${trabajo.id})}">Editar</a>
+											th:href="@{/trabajos/editar/{id}(id=${trabajo.id})}">Editar</a>
 										</td>
 
 										<div class="modal modal-warning fade in"
@@ -128,7 +134,7 @@
 														<button type="button" class="btn btn-outline pull-left"
 															data-dismiss="modal">Cerrar</button>
 														<a type="button" class="btn btn-outline"
-															th:href="@{/delete/trabajo/{id}(id=${trabajo.id})}"><i
+															th:href="@{/trabajos/delete/{id}(id=${trabajo.id})}"><i
 															class="fa fa-check"></i>&nbsp;Yes</a>
 													</div>
 												</div>

@@ -47,7 +47,7 @@ public class RutasClientes {
 		return mav;
 	}
 	
-	@GetMapping("/añadirCliente")
+	@GetMapping("/clientes/añadir")
 	public ModelAndView AñadirClientes(){
 		
 		ModelAndView mav = new ModelAndView();		
@@ -57,7 +57,7 @@ public class RutasClientes {
 		return mav;
 	}
 	
-	@PostMapping("/addCliente")
+	@PostMapping("/clientes/add")
 	public ModelAndView addCliente(@ModelAttribute Cliente cliente, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -77,7 +77,7 @@ public class RutasClientes {
 		
 	}
 	
-	@GetMapping("/cliente/editar/{id}")
+	@GetMapping("/clientes/editar/{id}")
 	public ModelAndView clienteEditar(@PathVariable String id) {
 
 		
@@ -91,7 +91,7 @@ public class RutasClientes {
 		return mav;
 	}	
 	
-	@PostMapping("/cliente/editar")
+	@PostMapping("/clientes/editar")
 	public ModelAndView clienteEditar(@ModelAttribute("cliente") Cliente cliente,  
 						BindingResult bindingResult) {
 		
@@ -110,7 +110,7 @@ public class RutasClientes {
 		return mav;
 	}
 	
-	@GetMapping("/delete/cliente/{id}")
+	@GetMapping("/clientes/delete/{id}")
 	public ModelAndView BorrarVehiculos(@PathVariable String id) {
 		
 		ModelAndView mav = new ModelAndView();

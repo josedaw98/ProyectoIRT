@@ -46,7 +46,7 @@ public class RutasMarca {
 	}
 	
 	
-	@GetMapping("/añadirMarca")
+	@GetMapping("/marcas/añadir")
 	public ModelAndView AñadirClientes(){
 		
 		ModelAndView mav = new ModelAndView();		
@@ -56,7 +56,7 @@ public class RutasMarca {
 		return mav;
 	}
 	
-	@PostMapping("/addMarca")
+	@PostMapping("/marcas/add")
 	public ModelAndView addCliente(@ModelAttribute Marca marca, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -73,7 +73,7 @@ public class RutasMarca {
 		
 	}
 	
-	@GetMapping("/marca/editar/{id}")
+	@GetMapping("/marcas/editar/{id}")
 	public ModelAndView clienteEditar(@PathVariable Integer id) {
 
 		
@@ -87,7 +87,7 @@ public class RutasMarca {
 		return mav;
 	}	
 	
-	@PostMapping("/marca/editar")
+	@PostMapping("/marcas/editar")
 	public ModelAndView clienteEditar(@ModelAttribute("marca") Marca marca,  
 						BindingResult bindingResult) {
 		
@@ -107,7 +107,7 @@ public class RutasMarca {
 	}
 	
 	
-	@GetMapping("/delete/marca/{id}")
+	@GetMapping("/marcas/delete/{id}")
 	public ModelAndView BorrarVehiculos(@PathVariable Integer id) {
 		
 		ModelAndView mav = new ModelAndView();

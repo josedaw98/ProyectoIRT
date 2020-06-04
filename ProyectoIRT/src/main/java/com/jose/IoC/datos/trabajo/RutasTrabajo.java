@@ -46,7 +46,7 @@ public class RutasTrabajo {
 	
 	
 	
-	@PostMapping("/addTrabajo")
+	@PostMapping("/trabajos/add")
 	public ModelAndView addPersona(@ModelAttribute Trabajo trabajo, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -84,7 +84,7 @@ public class RutasTrabajo {
 		return mav;
 	}
 	
-	@PostMapping("/vehiculoComprobado")
+	@PostMapping("/vehiculos/comprobado")
 	public ModelAndView ClienteComprobado(@ModelAttribute Vehiculo vehiculo){
 		
 		ModelAndView mav = new ModelAndView();
@@ -104,7 +104,7 @@ public class RutasTrabajo {
 		return mav;
 	}
 	
-	@GetMapping("/trabajo/editar/{id}")
+	@GetMapping("/trabajos/editar/{id}")
 	public ModelAndView trabajoEditar(@PathVariable Integer id) {
 
 		
@@ -118,7 +118,7 @@ public class RutasTrabajo {
 		return mav;
 	}	
 	
-	@PostMapping("/trabajo/editar")
+	@PostMapping("/trabajos/editar")
 	public ModelAndView usuariosEditar(@ModelAttribute("trabajo") Trabajo trabajo,  
 						BindingResult bindingResult) {
 		
@@ -137,7 +137,7 @@ public class RutasTrabajo {
 		return mav;
 	}
 	
-	@GetMapping("/delete/trabajo/{id}")
+	@GetMapping("/trabajos/delete/{id}")
 	public ModelAndView BorrarVehiculos(@PathVariable Integer id) {
 		
 		ModelAndView mav = new ModelAndView();

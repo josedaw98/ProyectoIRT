@@ -32,8 +32,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="documentos/estilos.css">
-<script type="text/javascript" src="documentos/JavaScript.js"></script>
+
 </head>
 <body id="page-top">
 
@@ -41,9 +40,10 @@
 	<!-- Header -->
 	<header class="masthead">
 		<div class="container-fluid">
-			<div class="row p-5 d-flex justify-content-center">
+			<div class="row d-flex justify-content-center">
 				<div class="col-12">
-					<nav class="navbar navbar-expand-lg navbar-mainbg">
+					<nav
+						class="navbar navbar-expand-lg navbar-mainbg bg-dark text-primary">
 						<a class="navbar-brand navbar-logo" th:href="@{/inicio}"><img
 							th:src="@{imagenes/logoFondo.jpg}" width="100px" height="25%"
 							class="d-inline-block align-top" alt=""></a>
@@ -60,7 +60,7 @@
 									<div class="right"></div>
 								</div>
 								<li class="nav-item"><a class="nav-link"
-									th:href="@{/vehiculos}"><i class="fas fa-tachometer-alt"></i>Vehiculos</a>
+									th:href="@{/vehiculos}"><i class="fas fa-tachometer-alt"></i>Vehículos</a>
 								</li>
 								<li class="nav-item"><a class="nav-link"
 									th:href="@{/clientes}"><i class="far fa-address-book"></i>Clientes</a></li>
@@ -70,9 +70,18 @@
 									th:href="@{/modelos}"><i class="far fa-calendar-alt"></i>Modelos</a></li>
 								<li class="nav-item"><a class="nav-link"
 									th:href="@{/marcas}"><i class="far fa-chart-bar"></i>Marcas</a></li>
-								<li class="nav-item"><a class="nav-link"
-									th:href="@{/marcas}"><i class="far fa-chart-bar"></i>cerrar
-										sesion</a></li>
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">Dropdown</a>
+									<div class="dropdown-menu dropdown-primary"
+										aria-labelledby="navbarDropdownMenuLink">
+										<a class="dropdown-item text-primary" href="#">perfil</a> <a
+											class="dropdown-item text-primary" href="#">usuarios</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item text-danger" href="#">cerrar
+											sesion</a>
+									</div></li>
 							</ul>
 						</div>
 					</nav>
@@ -81,72 +90,74 @@
 					<div class="mb-5">
 						<!--  mis datos -->
 						<div th:switch="${#lists.isEmpty(listaClientes)}">
-							<div id="noHayNadie" th:case="true" class="table-responsive text-nowrap">
+							<div id="noHayNadie" th:case="true"
+								class="table-responsive text-nowrap">
 								<p>No hay clientes en la base de datos</p>
 							</div>
-							<div class="table-resposive">
-								<div id="hayMensajes" th:case="false">
-									<table class="table table-hover table-sm ">
-										<tr class="thead-dark">
-											<th class="p-2">DNI</th>
-											<th class="p-2">Nombre</th>
-											<th class="p-2">Apellidos</th>
-											<th class="p-2">Direccion</th>
-											<th class="p-2">Correo</th>
-											<th class="p-2">Telefono</th>
-											<th class="p-2"></th>
-											<th class="p-2"></th>
-										</tr>
-										<tr th:each="cliente: ${listaClientes}">
-											<td class="p-2" th:text="${cliente.dni}"></td>
-											<td class="p-2" th:text="${cliente.nombre}"></td>
-											<td class="p-2" th:text="${cliente.apellidos}"></td>
-											<td class="p-2" th:text="${cliente.direccion}"></td>
-											<td class="p-2" th:text="${cliente.correo}"></td>
-											<td class="p-2" th:text="${cliente.telefono}"></td>
+							<div id="hayMensajes" th:case="false"
+								class="table-responsive text-nowrap">
+								<table class="table table-hover table-sm ">
+									<tr class="thead-dark">
+										<th class="p-2">DNI</th>
+										<th class="p-2">Nombre</th>
+										<th class="p-2">Apellidos</th>
+										<th class="p-2">Direccion</th>
+										<th class="p-2">Correo</th>
+										<th class="p-2">Telefono</th>
+										<th class="p-2"></th>
+										<th class="p-2"></th>
+									</tr>
+									<tr th:each="cliente: ${listaClientes}">
+										<td class="p-2" th:text="${cliente.dni}"></td>
+										<td class="p-2" th:text="${cliente.nombre}"></td>
+										<td class="p-2" th:text="${cliente.apellidos}"></td>
+										<td class="p-2" th:text="${cliente.direccion}"></td>
+										<td class="p-2" th:text="${cliente.correo}"></td>
+										<td class="p-2" th:text="${cliente.telefono}"></td>
 
-											<td class="p-2"><a type="button" class="btn btn-danger btn-sm"
-												data-toggle="modal"
-												th:attr="data-target='#modal-warning'+${cliente.dni}">Eliminar</a>
-											</td>
-											<td class="p-2"><a type="button" class="btn btn-info btn-sm"
-												th:href="@{/cliente/editar/{id}(id=${cliente.dni})}">Editar</a>
-											</td>
+										<td class="p-2"><a type="button"
+											class="btn btn-danger btn-sm" data-toggle="modal"
+											th:attr="data-target='#modal-warning'+${cliente.dni}">Eliminar</a>
+										</td>
+										<td class="p-2"><a type="button"
+											class="btn btn-info btn-sm"
+											th:href="@{/clientes/editar/{id}(id=${cliente.dni})}">Editar</a>
+										</td>
 
-											<div class="modal modal-warning fade in"
-												th:id="modal-warning+${cliente.dni}">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal"
-																aria-label="Close">
-																<span aria-hidden="true">×</span>
-															</button>
-															<h5 class="modal-title">Borrar cliente</h5>
-														</div>
-														<div class="modal-body">
-															<h3>Estas seguro que quieres borrar este cliente?</h3>
-														</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-outline pull-left"
-																data-dismiss="modal">Cerrar</button>
-															<a type="button" class="btn btn-outline"
-																th:href="@{/delete/cliente/{id}(id=${cliente.dni})}"><i
-																class="fa fa-check"></i>&nbsp;Yes</a>
-														</div>
+										<div class="modal modal-warning fade in"
+											th:id="modal-warning+${cliente.dni}">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">×</span>
+														</button>
+														<h5 class="modal-title">Borrar cliente</h5>
+													</div>
+													<div class="modal-body">
+														<h3>Estas seguro que quieres borrar este cliente?</h3>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-outline pull-left"
+															data-dismiss="modal">Cerrar</button>
+														<a type="button" class="btn btn-outline"
+															th:href="@{/clientes/delete/{id}(id=${cliente.dni})}"><i
+															class="fa fa-check"></i>&nbsp;Yes</a>
 													</div>
 												</div>
 											</div>
-										</tr>
-									</table>
-								</div>
+										</div>
+									</tr>
+								</table>
 							</div>
 						</div>
 					</div>
-					<!--  fin de mis datos -->
 				</div>
+				<!--  fin de mis datos -->
 			</div>
 		</div>
+		
 	</header>
 
 </body>
