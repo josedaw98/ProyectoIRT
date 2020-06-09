@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.jose.IoC.datos.clientes.Cliente;
 import com.jose.IoC.datos.marca.Marca;
@@ -22,6 +24,9 @@ import com.jose.IoC.datos.trabajo.Trabajo;
 public class Vehiculo {
 	
 	@Id
+	@Size(min=6, message="la matricula no puede ser pequeño")
+	@Size(max=8, message="la matricula no puede tan largo")
+	@NotNull(message="no puedes dejar esto vacio")
 	private String matricula;
 	
 
@@ -45,7 +50,7 @@ public class Vehiculo {
 	private Cliente cliente = new Cliente();
 	
 	
-	 @OneToMany(fetch=FetchType.EAGER, mappedBy = "vehiculo" ,cascade = CascadeType.REMOVE)
+	 @OneToMany(fetch=FetchType.EAGER, mappedBy = "vehiculo" )
 	 private List<Trabajo> listaTrabajos = new ArrayList<Trabajo>();
 	 
 	 

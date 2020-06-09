@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.jose.IoC.datos.modelos.Modelo;
 import com.jose.IoC.datos.vehiculos.Vehiculo;
@@ -23,6 +25,8 @@ public class Marca {
 	 private Integer id;
 	 
 	 @Column
+	 @NotNull(message="no puedes dejar esto vacio")
+	 @Size(min=1, message="no puedes dejar esto vacio")
 	 private String nombre;
 	 
 	 @OneToMany(mappedBy = "marca")

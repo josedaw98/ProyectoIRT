@@ -33,30 +33,40 @@
 							<label for="Titulo">Titulo</label> <input type="text"
 								th:field="*{titulo}" placeholder="inserta un Titulo"
 								class="form-control" id="Titulo">
+							<ul>
+								<li th:each="err : ${#fields.errors('titulo')}" th:text="${err}"
+									class="text-danger" />
+							</ul>
 						</div>
 						<div class="form-group col-md-12">
-							<label for="Descripcion">Descripcion</label> <textarea
-								th:field="*{descripcion}" placeholder="inserta una Descripcion"
-								class="form-control" id="Descripcion"></textarea>
+							<label for="Descripcion">Descripcion</label>
+							<textarea th:field="*{descripcion}"
+								placeholder="inserta una Descripcion" class="form-control"
+								id="Descripcion"></textarea>
 						</div>
 						<div class="form-group col-md-12">
-							<label for="Sucesos">Sucesos</label> <textarea
-								th:field="*{sucesos}" placeholder="inserta los Sucesos"
+							<label for="Sucesos">Sucesos</label>
+							<textarea th:field="*{sucesos}" placeholder="inserta los Sucesos"
 								class="form-control" id="Sucesos"></textarea>
 						</div>
 						<div class="form-group col-md-12">
 							<label for="Vehiculo">Vehiculo</label> <input type="text"
-								 th:value="${vehiculo.matricula}" name="Vehiculo"  readonly="readonly"
-								class="form-control" id="Vehiculo" >
+								th:value="${vehiculo.matricula}" name="Vehiculo"
+								readonly="readonly" class="form-control" id="Vehiculo">
 						</div>
+						<div class="form-group col-md-12">
+							<label for="username">Usuario</label> <input type="text"
+								readonly="readonly" class="form-control" name="trabajador"
+								th:value="${#authentication.name}">
+						</div>
+
 					</div>
 				</div>
 				<div class="modal-footer">
-					<a type="button"
-						class="btn btn-danger" th:href="@{/elegirVehiculo}">Cancelar</a>
-					<input type="submit" value="Añadir"
-						class="btn btn-primary float-right">
-					
+					<a type="button" class="btn btn-danger"
+						th:href="@{/elegirVehiculo}">Cancelar</a> <input type="submit"
+						value="Añadir" class="btn btn-primary float-right">
+
 				</div>
 			</form>
 		</div>

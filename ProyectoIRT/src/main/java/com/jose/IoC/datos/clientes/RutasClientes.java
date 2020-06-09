@@ -3,6 +3,8 @@ package com.jose.IoC.datos.clientes;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jose.IoC.datos.marca.MarcaDAO;
+import com.jose.IoC.datos.modelos.ModeloDAO;
 import com.jose.IoC.datos.vehiculos.Vehiculo;
 import com.jose.IoC.datos.vehiculos.VehiculoDAO;
 
@@ -27,6 +30,9 @@ public class RutasClientes {
 	
 	@Autowired
 	MarcaDAO marcaDAO;
+	
+	@Autowired
+	ModeloDAO modeloDAO;
 	
 	
 	
@@ -47,7 +53,7 @@ public class RutasClientes {
 		return mav;
 	}
 	
-	@GetMapping("/clientes/añadir")
+	@GetMapping("/clientes/add")
 	public ModelAndView AñadirClientes(){
 		
 		ModelAndView mav = new ModelAndView();		
@@ -57,12 +63,12 @@ public class RutasClientes {
 		return mav;
 	}
 	
-	@PostMapping("/clientes/add")
-	public ModelAndView addCliente(@ModelAttribute Cliente cliente, BindingResult bindingResult) {
+	@PostMapping("/addClientes")
+	public ModelAndView addCliente(@Valid @ModelAttribute Cliente cliente, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();
 		
 		if(bindingResult.hasErrors()) {
-            mav.setViewName("redirect:/añadirClientes");
+            mav.setViewName("AñadirCliente");
             System.out.println("Error de bindingResult" + bindingResult.hasErrors());
         } else {
             mav.setViewName("AñadirVehiculo");
@@ -70,6 +76,7 @@ public class RutasClientes {
             mav.addObject("cliente",cliente);
             mav.addObject("vehiculo", new Vehiculo());
             mav.addObject("listaMarcas",marcaDAO.findAll());
+            mav.addObject("listaModelos",modeloDAO.findAll());
             System.out.println(cliente);
         }
 		
@@ -92,14 +99,14 @@ public class RutasClientes {
 	}	
 	
 	@PostMapping("/clientes/editar")
-	public ModelAndView clienteEditar(@ModelAttribute("cliente") Cliente cliente,  
+	public ModelAndView clienteEditar(@Valid @ModelAttribute("cliente") Cliente cliente,  
 						BindingResult bindingResult) {
 		
 		
 		ModelAndView mav = new ModelAndView();
 		
 		if (bindingResult.hasErrors()) {
-			
+		
 			mav.setViewName("EditarCliente");
 			
 			return mav;

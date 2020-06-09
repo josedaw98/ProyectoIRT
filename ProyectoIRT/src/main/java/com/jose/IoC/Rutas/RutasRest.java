@@ -30,12 +30,14 @@ public class RutasRest {
 	
 	@Autowired
 	MarcaDAO marcaDAO;
+	@Autowired
+	AñadirMarcaJSON servicioMarca;
 	
 	@PutMapping("/JSON/add")
 	public  ResponseEntity<Marca> JsonEmpresaPUT(@RequestBody Marca marca) {
 			
 		
-		marcaDAO.save(marca);
+		servicioMarca.AñadirMarca(marca);
 		
 		
 		return new ResponseEntity<Marca>(marca,HttpStatus.OK);

@@ -23,7 +23,7 @@
 <div class="container row p-5 d-flex justify-content-center">
 		<div class="col-8">
 			<h4>Comprobar Vehiculo</h4>
-			<form action="#" th:action="@{/vehiculoComprobado}" th:object="${vehiculo}" method="post">
+			<form action="#" th:action="@{/vehiculos/comprobado}" th:object="${vehiculo}" method="post">
 				<div class="form-row">
 					<div class="form-group col-md-12">
 						<label for="Matricula">Matricula</label> <input type="text" th:field="*{matricula}"

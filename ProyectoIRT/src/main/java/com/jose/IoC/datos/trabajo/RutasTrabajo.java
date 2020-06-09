@@ -3,6 +3,8 @@ package com.jose.IoC.datos.trabajo;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -14,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jose.IoC.datos.clientes.Cliente;
 import com.jose.IoC.datos.clientes.ClienteDAO;
+import com.jose.IoC.datos.usuarios.Usuario;
+import com.jose.IoC.datos.usuarios.UsuarioDAO;
 import com.jose.IoC.datos.vehiculos.Vehiculo;
 import com.jose.IoC.datos.vehiculos.VehiculoDAO;
 import com.jose.IoC.servcios.ServiciosId;
@@ -26,6 +30,9 @@ public class RutasTrabajo {
 	
 	@Autowired
 	VehiculoDAO vehiculoDAO;
+	
+	@Autowired
+	UsuarioDAO usuarioDAO;
 	
 	@Autowired
 	ServiciosId servicios;
@@ -47,11 +54,12 @@ public class RutasTrabajo {
 	
 	
 	@PostMapping("/trabajos/add")
-	public ModelAndView addPersona(@ModelAttribute Trabajo trabajo, BindingResult bindingResult) {
+	public ModelAndView addPersona(@Valid @ModelAttribute Trabajo trabajo, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();
 		
 		if(bindingResult.hasErrors()) {
-            mav.setViewName("redirect:/elegirVehiculo");
+			mav.addObject("vehiculo", trabajo.getVehiculo());
+            mav.setViewName("AñadirTrabajo");
             System.out.println("Error de bindingResult" + bindingResult.hasErrors());
         } else {
             mav.setViewName("redirect:/trabajos");
@@ -85,7 +93,7 @@ public class RutasTrabajo {
 	}
 	
 	@PostMapping("/vehiculos/comprobado")
-	public ModelAndView ClienteComprobado(@ModelAttribute Vehiculo vehiculo){
+	public ModelAndView ClienteComprobado(@Valid @ModelAttribute Vehiculo vehiculo){
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -97,7 +105,7 @@ public class RutasTrabajo {
 			mav.addObject("trabajo", new Trabajo());
 			System.out.println(vehiculo);
 		}else {
-			mav.setViewName("NoEncontradoVehiculo");
+			mav.setViewName("VehiculoNoEncontrado");
 		}
 		
 		
@@ -119,7 +127,7 @@ public class RutasTrabajo {
 	}	
 	
 	@PostMapping("/trabajos/editar")
-	public ModelAndView usuariosEditar(@ModelAttribute("trabajo") Trabajo trabajo,  
+	public ModelAndView usuariosEditar(@Valid @ModelAttribute("trabajo") Trabajo trabajo,  
 						BindingResult bindingResult) {
 		
 		

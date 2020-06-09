@@ -1,165 +1,267 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Una web preciosa y maravillosa">
+<meta name="author" content="Jose Ramon Rojo Fernadez">
 
-  	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  	<meta name="description" content="Una web preciosa y maravillosa">
-  	<meta name="author" content="Jose Ramon Rojo Fernadez">
+<title>usuarios</title>
 
-  	<title>Usuarios</title>
-  
-  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
 
-  
+
+<!-- Estilos necesarios cabecera -->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+	crossorigin="anonymous" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap"
+	rel="stylesheet">
+
+
+
 
 
 </head>
+<body>
+	<header class="masthead">
+		<div class="container-fluid">
+			<div class="row d-flex justify-content-center">
+				<div class="col-12">
+					<nav
+						class="navbar navbar-expand-lg navbar-mainbg bg-dark text-primary">
+						<a class="navbar-brand navbar-logo" th:href="@{/inicio}"><img
+							th:src="@{imagenes/logoFondo.jpg}" width="100px" height="25%"
+							class="d-inline-block align-top" alt=""></a>
+						<button class="navbar-toggler" type="button"
+							data-toggle="collapse" data-target="#navbarSupportedContent"
+							aria-controls="navbarSupportedContent" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<i class="fas fa-bars text-white"></i>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav ml-auto mr-1">
+								<div class="hori-selector">
+									<div class="left"></div>
+									<div class="right"></div>
+								</div>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/vehiculos}"><i class="fas fa-tachometer-alt"></i>Vehículos</a>
+								</li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/clientes}"><i class="far fa-address-book"></i>Clientes</a></li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/trabajos}"><i class="far fa-clone"></i>Trabajos</a></li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/modelos}"><i class="far fa-calendar-alt"></i>Modelos</a></li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/marcas}"><i class="far fa-chart-bar"></i>Marcas</a></li>
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"><span sec:authentication="name">Bob</span></a>
+									<div class="dropdown-menu dropdown-primary"
+										aria-labelledby="navbarDropdownMenuLink">
+										
+										<span th:remove="tag"
+											th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'')')})">
+											<a class="dropdown-item text-primary" th:href="@{/usuarios}">usuarios</a>
+										</span>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item text-danger" th:href="@{/logout}">cerrar
+											sesion</a>
+									</div></li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+				<div class="col-12">
+					<div class="mb-5">
+						<!--  mis datos -->
+						<div th:switch="${#lists.isEmpty(usuarios)}">
+							<div id="noHayNadie" th:case="true">
+								<p>No hay Usuarios en la base de datos</p>
+							</div>
+							<div id="hayMensajes" th:case="false"
+								class="table-responsive text-nowrap">
+								<table class="table table-hover table-sm ">
+									<tr class="thead-dark">
+										<th class="p-2">Id</th>
+										<th class="p-2">Nombre</th>
+										<th class="p-2">Apellidos</th>
+										<th class="p-2">Rol</th>
+										<th class="p-2">Eliminar</th>
+										<th class="p-2">Editar</th>
+									</tr>
+									<tr th:each="user: ${usuarios}">
+										<td class="p-2" th:text="${user.usuario}"></td>
+										<td class="p-2" th:text="${user.nombre}"></td>
+										<td class="p-2" th:text="${user.apellidos}"></td>
+										<td class="p-2" th:text="${user.rol.nombre}"></td>
+										<td class="p-2"><span th:remove="tag"
+											th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'')')})">
+												<a type="button" class="btn btn-danger btn-sm"
+												data-toggle="modal"
+												th:attr="data-target='#modal-warning'+${user.usuario}">Eliminar</a>
+										</span></td>
+										<td class="p-2"><span th:remove="tag"
+											th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'')')}) or (${#authentication.name} == ${user.usuario})">
+												<a type="button" class="btn btn-info btn-sm"
+												th:href="@{/usuarios/editar/{id}(id=${user.usuario})}">Editar</a>
+										</span></td>
 
-<body id="page-top">
+										<div class="modal modal-warning fade in"
+											th:id="modal-warning+${user.usuario}">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">×</span>
+														</button>
+														<h5 class="modal-title">Borrar cliente</h5>
+													</div>
+													<div class="modal-body">
+														<h3>Estas seguro que quieres borrar este cliente?</h3>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-outline pull-left"
+															data-dismiss="modal">Cerrar</button>
+														<a type="button" class="btn btn-outline"
+															th:href="@{/usuarios/delete/{id}(id=${user.usuario})}"><i
+															class="fa fa-check"></i>&nbsp;Yes</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--  fin de mis datos -->
+
+				</div>
+				<div class="col-12">
+					<div class="d-flex justify-content-end mt-2">
+						<span th:remove="tag"
+							th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'')')})">
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#crearMensaje">Nuevo usuario</button>
+						</span>
+
+					</div>
+				</div>
+
+				<!-- Añadir carpeta modal -->
+				<div class="modal fade" id="crearMensaje" tabindex="-1"
+					role="dialog" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="exampleModalLabel">Nuevo
+									Usuario</h4>
+								<button class="close" type="button" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">×</span>
+								</button>
+							</div>
+
+							<form action="#" th:action="@{/usuarios/add}"
+								th:object="${usuario}" method="post">
+								<div class="modal-body">
+
+									<div class="form-row">
+										<div class="form-group col-md-12">
+											<label for="texto">Usuario</label> <input type="text"
+												th:field="*{usuario}" placeholder="inserta un texto"
+												class="form-control" id="texto">
+											<p th:if="${#fields.hasErrors('usuario')}"
+												th:errors="*{usuario}">Incorrect date</p>
+										</div>
+									</div>
+
+									<div class="form-row">
+										<div class="form-group col-md-12">
+											<label for="texto">Password</label> <input type="text"
+												th:field="*{password}" placeholder="inserta un texto"
+												class="form-control" id="texto">
+											<ul>
+												<li th:each="err : ${#fields.errors('password')}"
+													th:text="${err}" class="text-danger" />
+											</ul>
+										</div>
+									</div>
+
+									<div class="form-row">
+										<div class="form-group col-md-12">
+											<label for="texto">Nombre</label> <input type="text"
+												th:field="*{nombre}" placeholder="inserta un texto"
+												class="form-control" id="texto">
+											<ul>
+												<li th:each="err : ${#fields.errors('nombre')}"
+													th:text="${err}" class="text-danger" />
+											</ul>
+										</div>
+									</div>
+
+									<div class="form-row">
+										<div class="form-group col-md-12">
+											<label for="texto">Apellidos</label> <input type="text"
+												th:field="*{apellidos}" placeholder="inserta un texto"
+												class="form-control" id="texto">
+											<ul>
+												<li th:each="err : ${#fields.errors('apellidos')}"
+													th:text="${err}" class="text-danger" />
+											</ul>
+										</div>
+									</div>
+
+									<div class="form-row">
+										<div class="form-group col-md-12">
+											<label for="texto">Permisos</label>
+											<ul>
+												<li th:each="permiso: ${roles}"><input type="radio"
+													name="permisos" th:text="${permiso.nombre}"
+													th:field="*{rol.nombre}" th:value="${permiso.nombre}" /></li>
+											</ul>
+										</div>
+									</div>
 
 
-  <!-- Header -->
-  <header class="masthead">
+								</div>
+								<div class="modal-footer">
+									<input type="submit" value="Añadir"
+										class="btn btn-primary float-right">
+									<button data-dismiss="modal"
+										class="btn btn-outline-danger float-right mr-2">Cancelar</button>
+								</div>
+							</form>
+						</div>
 
-	
-    <div class="row p-5">
-      <div class="col-8">
-        
-        <a type="button" class="btn btn-danger btn-sm mb-5" th:href="@{/logout}">Logout </span></a>
-        
-        
-        <div class="mb-5"> <!--  mis datos -->
-			<div th:switch="${#lists.isEmpty(usuarios)}">
-			  <div id="noHayNadie" th:case="true">
-			  		<p>No hay nadie</p>
-			  </div>
-			  <div id="hayMensajes" th:case="false">
-				    <table class="table table-hover table-sm ">
-				      <tr class="thead-dark">
-				        <th>Usuario</th>
-				        <th>Nombre</th>
-				        <th>Apellidos</th>
-				        <th>Permisos</th>
-				        <th></th>
-				        <th></th>
-				      </tr>
-				      <tr th:each="user: ${usuarios}">
-				        <td th:text="${user.usuario}"></td>
-				        <td th:text="${user.nombre}"></td>
-				        <td th:text="${user.apellidos}"></td>
-				        <td th:text="${user.rol.nombre}"></td>
-				        <td >
-				        	<span th:remove="tag" th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'',''MODERADOR'')')})">
-					        	<a type="button" class="btn btn-primary btn-sm" th:href="@{/usuarios/editar/{id}(id=${user.usuario})}">Editar</a>
-							</span>
-						</td>
-				        <td>
-				        	<a type="button" class="btn btn-danger btn-sm" th:href="@{/usuarios/borrar/{id}(id=${user.usuario})}">Eliminar</a>
-				        </td>
-				      </tr>
-				    </table>
-			  </div>
-			</div> 
-        </div><!--  fin de mis datos -->
-        
-      </div>
-      <div class="col-3 float-right">
-        <div class="p-5">
-	       	<span th:remove="tag" th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'',''MODERADOR'')')})">
-				<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#crearMensaje" >
-					Nuevo usuario
-				</button>
-			</span>
-
-        </div>     
-      </div> 
-    </div>
-  </header>
-
-
-
-
-  		<!-- Añadir carpeta modal -->
-		  <div class="modal fade" id="crearMensaje" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		    <div class="modal-dialog" role="document">
-		      <div class="modal-content">
-		        <div class="modal-header">
-		          <h4 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h4>
-		          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-		            <span aria-hidden="true">×</span>
-		          </button>
-		        </div>
-
-                <form action="#" th:action="@{/usuarios/anadir}" th:object="${user}" method="post">
-			        <div class="modal-body">
-			        
-					  <div class="form-row">
-					    <div class="form-group col-md-12">
-					      <label for="texto">Usuario</label>
-					      <input type="text" th:field="*{usuario}"  placeholder="inserta un texto" class="form-control" id="texto">
-					      <p th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}">Incorrect date</p>
-					    </div>
-	                  </div>
-			        
-					  <div class="form-row">
-					    <div class="form-group col-md-12">
-					      <label for="texto">Password</label>
-					      <input type="text" th:field="*{password}"  placeholder="inserta un texto" class="form-control" id="texto">
-					    </div>
-	                  </div>
-			        
-					  <div class="form-row">
-					    <div class="form-group col-md-12">
-					      <label for="texto">Nombre</label>
-					      <input type="text" th:field="*{nombre}"  placeholder="inserta un texto" class="form-control" id="texto">
-					    </div>
-	                  </div>
-			        
-					  <div class="form-row">
-					    <div class="form-group col-md-12">
-					      <label for="texto">Apellidos</label>
-					      <input type="text" th:field="*{apellidos}"  placeholder="inserta un texto" class="form-control" id="texto">
-					    </div>
-	                  </div>
-	                  
-					  <div class="form-row">
-					    <div class="form-group col-md-12">
-					      <label for="texto">Permisos</label>
-							<ul>
-							  <li th:each="permiso: ${roles}">
-							    <input 
-							    	type="radio" 
-							    	name="permisos" 
-							        th:text="${permiso.nombre}"
-							        th:field="*{rol.nombre}"
-							        th:value="${permiso.nombre}"
-							    />
-							  </li>
-							</ul>					      
-						  </div>
-	                  </div>	                  
-
-
-			        </div>
-			        <div class="modal-footer">
-		                <input type="submit" value="Añadir" class="btn btn-primary float-right">
-		                <button data-dismiss="modal" class="btn btn-outline-danger float-right mr-2">Cancelar</button>
-			        </div>
-                </form>
-		      </div>
-		      
-		    </div>
-		  </div>
-
-		<!-- Añadir carpeta modal -->
-
-
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
 
 </body>
-
 </html>

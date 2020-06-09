@@ -35,7 +35,7 @@
 			<h4 class="modal-title" id="exampleModalLabel">Nuevo Vehiculo</h4>
 
 
-			<form action="#" th:action="@{/modelos/add}" th:object="${modelo}"
+			<form action="#" th:action="@{/addModelos}" th:object="${modelo}"
 				method="post">
 				<div class="modal-body">
 					<div class="form-row">
@@ -43,6 +43,10 @@
 							<label for="Nombre">Nombre</label> <input type="text"
 								th:field="*{nombre}" placeholder="inserta un nombre"
 								class="form-control" id="Nombre">
+							<ul>
+								<li th:each="err : ${#fields.errors('nombre')}" th:text="${err}"
+									class="text-danger" />
+							</ul>
 						</div>
 						<div class="form-group col-md-12">
 							<label for="Combustible">Combustible</label> <select
@@ -52,7 +56,10 @@
 								<option th:value="Electrico" th:text="Electrico"></option>
 								<option th:value="Hibrido" th:text="Hibrido"></option>
 							</select>
-
+							<ul>
+								<li th:each="err : ${#fields.errors('combustible')}"
+									th:text="${err}" class="text-danger" />
+							</ul>
 						</div>
 						<div class="form-group col-md-12">
 							<label for="Reprogramacion">Reprogramacion</label> <input
@@ -81,10 +88,18 @@
 						<div class="form-group col-md-12">
 							<label for="CV">CV</label> <input type="number" th:field="*{CV}"
 								placeholder="inserta un  CV" class="form-control" id="CV">
+							<ul>
+								<li th:each="err : ${#fields.errors('CV')}" th:text="${err}"
+									class="text-danger" />
+							</ul>
 						</div>
 						<div class="form-group col-md-12">
 							<label for="NM">NM</label> <input type="number" th:field="*{NM}"
 								placeholder="inserta un NM" class="form-control" id="NM">
+							<ul>
+								<li th:each="err : ${#fields.errors('NM')}" th:text="${err}"
+									class="text-danger" />
+							</ul>
 						</div>
 						<div class="form-group col-md-12">
 							<label for="Extras">Extras</label> <input type="text"

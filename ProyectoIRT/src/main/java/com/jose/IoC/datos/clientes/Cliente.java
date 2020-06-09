@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.jose.IoC.datos.vehiculos.Vehiculo;
 
@@ -17,18 +20,24 @@ import com.jose.IoC.datos.vehiculos.Vehiculo;
 public class Cliente {
 	
 	@Id
+	@Size(min=8, message="el dni no puede ser pequeño")
+	@Size(max=10, message="el dni no puede tal largo")
+	@NotNull(message="no puedes dejar esto vacio")
 	private String dni;
 	
 	@Column
+	@Size(min=1, message="no puedes dejar esto vacio")
 	private String nombre;
 	
 	@Column
+	@Size(min=1, message="no puedes dejar esto vacio")
 	private String apellidos;
 	
 	@Column
 	private String direccion;
 	
 	@Column
+	@Pattern(regexp="[A-Za-z0-9._-]+@[A-Za-z.]+",message="email invalido")
 	private String correo;
 	
 	@Column

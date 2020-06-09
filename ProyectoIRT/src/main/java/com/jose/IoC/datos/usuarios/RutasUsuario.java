@@ -2,6 +2,7 @@ package com.jose.IoC.datos.usuarios;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,26 +52,7 @@ public class RutasUsuario {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("Usuarios");
-		mav.addObject("user",new Usuario());
-		
-		List<Usuario> listaUsuarios = (List<Usuario>)usuarioDAO.findAll();
-		mav.addObject("usuarios",listaUsuarios);
-		
-		List<Rol> listaRoles = (List<Rol>)rolDAO.findAll();
-		mav.addObject("roles",listaRoles);
-		
-
-		
-		return mav;
-	}
-	
-	@GetMapping("/perfil")
-	public ModelAndView perfil(HttpSession sesion) {
-		
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("Usuarios");
-		mav.addObject("user",new Usuario());
+		mav.addObject("usuario",new Usuario());
 		
 		List<Usuario> listaUsuarios = (List<Usuario>)usuarioDAO.findAll();
 		mav.addObject("usuarios",listaUsuarios);
@@ -83,7 +66,7 @@ public class RutasUsuario {
 	}
 	
 	
-	@PostMapping("/usuarios/anadir")
+	@PostMapping("/usuarios/add")
 	public String usuariosAnadir(@ModelAttribute @Valid Usuario usuario,
 								Errors errores, ModelMap map) {
 		
@@ -130,7 +113,8 @@ public class RutasUsuario {
 			
 			return mav;
 		}
-		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		usuarioDAO.save(usuario);
 		mav.setViewName("redirect:/usuarios");
 		return mav;
@@ -146,7 +130,10 @@ public class RutasUsuario {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("editarUser");
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		mav.addObject("user",user);
+
 		
 		List<Rol> listaRoles = (List<Rol>)rolDAO.findAll();
 		mav.addObject("roles",listaRoles);
@@ -159,7 +146,7 @@ public class RutasUsuario {
 	
 	
 
-	@GetMapping("/usuarios/borrar/{id}")
+	@GetMapping("/usuarios/delete/{id}")
 	public String usuariosBorrar(@PathVariable String id) {
 		
 		usuarioDAO.deleteById(id);

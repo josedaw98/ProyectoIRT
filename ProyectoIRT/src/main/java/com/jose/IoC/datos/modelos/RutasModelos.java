@@ -2,6 +2,8 @@ package com.jose.IoC.datos.modelos;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -39,7 +41,7 @@ public class RutasModelos {
 		return mav;
 	}
 	
-	@GetMapping("/añadirModelo")
+	@GetMapping("/modelos/add")
 	public ModelAndView AñadirModelos(){
 		
 		ModelAndView mav = new ModelAndView();		
@@ -50,12 +52,12 @@ public class RutasModelos {
 		return mav;
 	}
 	
-	@PostMapping("/addModelo")
-	public ModelAndView addModelo(@ModelAttribute Modelo modelo, BindingResult bindingResult) {
+	@PostMapping("/addModelos")
+	public ModelAndView addModelo(@Valid @ModelAttribute Modelo modelo, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();
 		
 		if(bindingResult.hasErrors()) {
-            mav.setViewName("redirect:/añadirModelo");
+            mav.setViewName("redirect:/modelos/add");
             System.out.println("Error de bindingResult" + bindingResult.hasErrors());
         } else {
             mav.setViewName("Modelos");
@@ -66,7 +68,7 @@ public class RutasModelos {
 		return mav;
 		
 	}
-	@GetMapping("/modelo/editar/{id}")
+	@GetMapping("/modelos/editar/{id}")
 	public ModelAndView modeloEditar(@PathVariable Integer id) {
 
 		
@@ -81,8 +83,8 @@ public class RutasModelos {
 		return mav;
 	}
 	
-	@PostMapping("/modelo/editar")
-	public ModelAndView modeloEditado(@ModelAttribute("modelo") Modelo modelo,  
+	@PostMapping("/modelos/editar")
+	public ModelAndView modeloEditado(@Valid @ModelAttribute("modelo") Modelo modelo,  
 						BindingResult bindingResult) {
 		
 		
@@ -100,7 +102,7 @@ public class RutasModelos {
 		return mav;
 	}
 	
-	@GetMapping("/delete/modelo/{id}")
+	@GetMapping("/modelos/delete/{id}")
 	public ModelAndView BorrarModelo(@PathVariable Integer id) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -116,7 +118,7 @@ public class RutasModelos {
 	}
 	
 	
-	@GetMapping("modelo/reprogramacion/{id}")
+	@GetMapping("modelos/reprogramacion/{id}")
 	public ModelAndView verReprogramcion(@PathVariable Integer id) {
 		
 		ModelAndView mav = new ModelAndView();

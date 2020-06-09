@@ -73,13 +73,16 @@
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
 									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">Dropdown</a>
+									aria-expanded="false"><span sec:authentication="name">Bob</span></a>
 									<div class="dropdown-menu dropdown-primary"
 										aria-labelledby="navbarDropdownMenuLink">
-										<a class="dropdown-item text-primary" href="#">perfil</a> <a
-											class="dropdown-item text-primary" href="#">usuarios</a>
+							
+										<span th:remove="tag"
+											th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'')')})">
+											<a class="dropdown-item text-primary" th:href="@{/usuarios}">usuarios</a>
+										</span>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item text-danger" href="#">cerrar
+										<a class="dropdown-item text-danger" th:href="@{/logout}">cerrar
 											sesion</a>
 									</div></li>
 							</ul>
@@ -115,13 +118,16 @@
 										<td class="p-2" th:text="${cliente.correo}"></td>
 										<td class="p-2" th:text="${cliente.telefono}"></td>
 
-										<td class="p-2"><a type="button"
-											class="btn btn-danger btn-sm" data-toggle="modal"
-											th:attr="data-target='#modal-warning'+${cliente.dni}">Eliminar</a>
-										</td>
-										<td class="p-2"><a type="button"
-											class="btn btn-info btn-sm"
-											th:href="@{/clientes/editar/{id}(id=${cliente.dni})}">Editar</a>
+										<td class="p-2"><span th:remove="tag"
+											th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'')')})">
+												<a type="button" class="btn btn-danger btn-sm"
+												data-toggle="modal"
+												th:attr="data-target='#modal-warning'+${cliente.dni}">Eliminar</a>
+										</span></td>
+										<td class="p-2"><span th:remove="tag"
+											th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'')')})"><a
+												type="button" class="btn btn-info btn-sm"
+												th:href="@{/clientes/editar/{id}(id=${cliente.dni})}">Editar</a></span>
 										</td>
 
 										<div class="modal modal-warning fade in"
@@ -157,7 +163,7 @@
 				<!--  fin de mis datos -->
 			</div>
 		</div>
-		
+
 	</header>
 
 </body>

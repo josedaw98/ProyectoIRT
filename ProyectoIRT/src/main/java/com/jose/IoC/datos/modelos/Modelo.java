@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.jose.IoC.datos.marca.Marca;
 import com.jose.IoC.datos.vehiculos.Vehiculo;
@@ -25,15 +27,21 @@ public class Modelo {
 	private Integer id;
 
 	@Column
+	@NotNull(message="no puedes dejar esto vacio")
+	@Size(min=1, message="no puedes dejar esto vacio")
 	private String nombre;
 
 	@Column
+	@NotNull(message="no puedes dejar esto vacio")
+	@Size(min=1, message="no puedes dejar esto vacio")
 	private String combustible;
 
 	@Column
+	@NotNull(message="no puedes dejar esto vacio")
 	private Integer CV;
 
 	@Column
+	@NotNull(message="no puedes dejar esto vacio")
 	private Integer NM;
 
 	@Column

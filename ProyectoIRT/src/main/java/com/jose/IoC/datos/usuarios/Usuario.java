@@ -34,6 +34,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.jose.IoC.datos.Roles.Rol;
+import com.jose.IoC.datos.trabajo.Trabajo;
 
 
 
@@ -45,29 +46,48 @@ public class Usuario implements UserDetails  {
 	
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
+	@NotNull(message="no puedes dejar esto vacio")
+	@Size(min=1, message="no puedes dejar esto vacio")
 	private String usuario;
 	
 	@Column
+	@NotNull(message="no puedes dejar esto vacio")
+	@Size(min=1, message="no puedes dejar esto vacio")
 	private String password;
 	
 	@Column
-	@Size(min=5, message="el nombre no puede ser pequeño")
-	@Size(max=10, message="el nombre no puede tal largo")
 	@NotNull(message="no puedes dejar esto vacio")
+	@Size(min=1, message="no puedes dejar esto vacio")
 	private String nombre;
 	
 	@Column
+	@NotNull(message="no puedes dejar esto vacio")
+	@Size(min=1, message="no puedes dejar esto vacio")
 	private String apellidos;
 
 
 	@ManyToOne
+	@JoinColumn(name="Rol_nombre")
 	private Rol rol = new Rol();	
-	
+
 	
 	
 
 	
+	
+	
+
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
 	public Rol getRol() {
 		return rol;
 	}

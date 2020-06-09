@@ -43,46 +43,52 @@
 		<div class="container-fluid">
 			<div class="row d-flex justify-content-center">
 				<div class="col-12">
-						<nav class="navbar navbar-expand-lg navbar-mainbg bg-dark text-primary">
-		<a class="navbar-brand navbar-logo" th:href="@{/inicio}"><img
-			th:src="@{imagenes/logoFondo.jpg}" width="100px" height="25%"
-			class="d-inline-block align-top" alt=""></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<i class="fas fa-bars text-white"></i>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav ml-auto mr-1">
-				<div class="hori-selector">
-					<div class="left"></div>
-					<div class="right"></div>
-				</div>
-				<li class="nav-item"><a class="nav-link"
-					th:href="@{/vehiculos}"><i class="fas fa-tachometer-alt"></i>Vehículos</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/clientes}"><i
-						class="far fa-address-book"></i>Clientes</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/trabajos}"><i
-						class="far fa-clone"></i>Trabajos</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/modelos}"><i
-						class="far fa-calendar-alt"></i>Modelos</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/marcas}"><i
-						class="far fa-chart-bar"></i>Marcas</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-					<div class="dropdown-menu dropdown-primary"
-						aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item text-primary" href="#">perfil</a> <a
-							class="dropdown-item text-primary" href="#">usuarios</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item text-danger" href="#">cerrar sesion</a>
-					</div></li>
-			</ul>
-		</div>
-	</nav>
+					<nav
+						class="navbar navbar-expand-lg navbar-mainbg bg-dark text-primary">
+						<a class="navbar-brand navbar-logo" th:href="@{/inicio}"><img
+							th:src="@{imagenes/logoFondo.jpg}" width="100px" height="25%"
+							class="d-inline-block align-top" alt=""></a>
+						<button class="navbar-toggler" type="button"
+							data-toggle="collapse" data-target="#navbarSupportedContent"
+							aria-controls="navbarSupportedContent" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<i class="fas fa-bars text-white"></i>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav ml-auto mr-1">
+								<div class="hori-selector">
+									<div class="left"></div>
+									<div class="right"></div>
+								</div>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/vehiculos}"><i class="fas fa-tachometer-alt"></i>Vehículos</a>
+								</li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/clientes}"><i class="far fa-address-book"></i>Clientes</a></li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/trabajos}"><i class="far fa-clone"></i>Trabajos</a></li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/modelos}"><i class="far fa-calendar-alt"></i>Modelos</a></li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/marcas}"><i class="far fa-chart-bar"></i>Marcas</a></li>
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"><span sec:authentication="name">Bob</span></a>
+									<div class="dropdown-menu dropdown-primary"
+										aria-labelledby="navbarDropdownMenuLink">
+								
+										<span th:remove="tag"
+											th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'')')})">
+											<a class="dropdown-item text-primary" th:href="@{/usuarios}">usuarios</a>
+										</span>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item text-danger" th:href="@{/logout}">cerrar
+											sesion</a>
+									</div></li>
+							</ul>
+						</div>
+					</nav>
 				</div>
 				<div class="col-12">
 					<div class="mb-5">
@@ -91,7 +97,8 @@
 							<div id="noHayNadie" th:case="true">
 								<p>No hay trabajos en la base de datos</p>
 							</div>
-							<div id="hayMensajes" th:case="false" class="table-responsive text-nowrap">
+							<div id="hayMensajes" th:case="false"
+								class="table-responsive text-nowrap">
 								<table class="table table-hover table-sm ">
 									<tr class="thead-dark">
 										<th class="p-2">Id</th>
@@ -99,6 +106,7 @@
 										<th class="p-2">Descripcion</th>
 										<th class="p-2">Sucesos</th>
 										<th class="p-2">Vehiculo</th>
+										<th class="p-2">Trabajador</th>
 										<th class="p-2">Eliminar</th>
 										<th class="p-2">Editar</th>
 									</tr>
@@ -108,12 +116,16 @@
 										<td class="p-2" th:text="${trabajo.descripcion}"></td>
 										<td class="p-2" th:text="${trabajo.sucesos}"></td>
 										<td class="p-2" th:text="${trabajo.vehiculo.matricula}"></td>
-										<td class="p-2"><a type="button" class="btn btn-danger btn-sm"
-											data-toggle="modal"
-											th:attr="data-target='#modal-warning'+${trabajo.id}">Eliminar</a>
+										<td class="p-2" th:text="${trabajo.trabajador}"></td>
+										<td class="p-2"><span th:remove="tag"
+											th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'')')})"><a type="button"
+											class="btn btn-danger btn-sm" data-toggle="modal"
+											th:attr="data-target='#modal-warning'+${trabajo.id}">Eliminar</a></span>
 										</td>
-										<td class="p-2"><a type="button" class="btn btn-info btn-sm"
-											th:href="@{/trabajos/editar/{id}(id=${trabajo.id})}">Editar</a>
+										<td class="p-2"><span th:remove="tag"
+											th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'')')})"><a type="button"
+											class="btn btn-info btn-sm"
+											th:href="@{/trabajos/editar/{id}(id=${trabajo.id})}">Editar</a></span>
 										</td>
 
 										<div class="modal modal-warning fade in"

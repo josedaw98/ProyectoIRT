@@ -1,58 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  	<meta name="description" content="Una web preciosa y maravillosa">
-  	<meta name="author" content="Jose Ramon Rojo Fernadez">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Una web preciosa y maravillosa">
+<meta name="author" content="Jose Ramon Rojo Fernadez">
 
-  	<title>Editar clientes</title>
-  
-  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<title>Editar clientes</title>
 
- 
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+
+
 </head>
 <body>
-<div class="container row p-5 d-flex justify-content-center">
-<div class="col-8">
-		          <h4 >Editar Cliente</h4>
-                <form action="#" th:action="@{/clientes/editar}" th:object="${cliente}" method="post">
-						  <div class="form-row">
-						    <div class="form-group col-md-12">
-						      <label for="dni">DNI</label>
-						      <input type="text" th:field="*{dni}"  placeholder="inserta un DNI" class="form-control" id="dni">
-						    </div>
-						    <div class="form-group col-md-12">
-						      <label for="nombre">Nombre</label>
-						      <input type="text" th:field="*{nombre}"  placeholder="inserta un nombre" class="form-control" id="nombre">
-						    </div>
-						    <div class="form-group col-md-12">
-						      <label for="apellidos">Apellidos</label>
-						      <input type="text" th:field="*{apellidos}"  placeholder="inserta los apellidos" class="form-control" id="apellidos">
-						    </div>
-						    <div class="form-group col-md-12">
-						      <label for="direccion">Direccion</label>
-						      <input type="text" th:field="*{direccion}"  placeholder="inserta una direccion" class="form-control" id="direccion">
-						    </div>
-						    <div class="form-group col-md-12">
-						      <label for="correo">Correo</label>
-						      <input type="text" th:field="*{correo}"  placeholder="inserta un cliente" class="form-control" id="correo">
-						    </div>
-						    <div class="form-group col-md-12">
-						      <label for="telefono">Telefono</label>
-						      <input type="number" th:field="*{telefono}"  placeholder="inserta un cliente" class="form-control" id="telefono">
-						    </div>
-		                    </div>
-			        	    <div class="form-group col-md-12">
-		                	  <input type="submit" value="Añadir" class="btn btn-primary float-right">
-		                	  <a type="button" class="btn btn-danger" th:href="@{/clientes}">cancelar</a>
-			        	    </div>
-		                  </div>
-		     
-                </form>
+	<div class="container row p-5 d-flex justify-content-center">
+		<div class="col-8">
+			<h4>Editar Cliente</h4>
+			<form action="#" th:action="@{/clientes/editar}"
+				th:object="${cliente}" method="post">
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label for="dni">DNI</label> <input type="text" th:field="*{dni}"
+							placeholder="inserta un DNI" class="form-control" id="dni">
+						<ul>
+							<li th:each="err : ${#fields.errors('dni')}" th:text="${err}"
+								class="text-danger" />
+						</ul>
+					</div>
+					<div class="form-group col-md-12">
+						<label for="nombre">Nombre</label> <input type="text"
+							th:field="*{nombre}" placeholder="inserta un nombre"
+							class="form-control" id="nombre">
+						<ul>
+							<li th:each="err : ${#fields.errors('nombre')}" th:text="${err}"
+								class="text-danger" />
+						</ul>
+					</div>
+					<div class="form-group col-md-12">
+						<label for="apellidos">Apellidos</label> <input type="text"
+							th:field="*{apellidos}" placeholder="inserta los apellidos"
+							class="form-control" id="apellidos">
+						<ul>
+							<li th:each="err : ${#fields.errors('apellidos')}"
+								th:text="${err}" class="text-danger" />
+						</ul>
+					</div>
+					<div class="form-group col-md-12">
+						<label for="direccion">Direccion</label> <input type="text"
+							th:field="*{direccion}" placeholder="inserta una direccion"
+							class="form-control" id="direccion">
+					</div>
+					<div class="form-group col-md-12">
+						<label for="correo">Correo</label> <input type="text"
+							th:field="*{correo}" placeholder="inserta un cliente"
+							class="form-control" id="correo">
+						<ul>
+							<li th:each="err : ${#fields.errors('correo')}" th:text="${err}"
+								class="text-danger" />
+						</ul>
+					</div>
+					<div class="form-group col-md-12">
+						<label for="telefono">Telefono</label> <input type="number"
+							th:field="*{telefono}" placeholder="inserta un cliente"
+							class="form-control" id="telefono">
+					</div>
+				</div>
+				<div class="form-group col-md-12">
+					<input type="submit" value="Añadir"
+						class="btn btn-primary float-right"> <a type="button"
+						class="btn btn-danger" th:href="@{/clientes}">cancelar</a>
+				</div>
+		</div>
+
+		</form>
 
 	</div>
 	</div>

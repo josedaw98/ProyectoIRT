@@ -2,6 +2,8 @@ package com.jose.IoC.datos.marca;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -46,7 +48,7 @@ public class RutasMarca {
 	}
 	
 	
-	@GetMapping("/marcas/añadir")
+	@GetMapping("/marcas/add")
 	public ModelAndView AñadirClientes(){
 		
 		ModelAndView mav = new ModelAndView();		
@@ -56,12 +58,12 @@ public class RutasMarca {
 		return mav;
 	}
 	
-	@PostMapping("/marcas/add")
-	public ModelAndView addCliente(@ModelAttribute Marca marca, BindingResult bindingResult) {
+	@PostMapping("/addMarca")
+	public ModelAndView addCliente(@Valid @ModelAttribute Marca marca, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();
 		
 		if(bindingResult.hasErrors()) {
-            mav.setViewName("redirect:/añadirMarca");
+            mav.setViewName("AñadirMarca");
             System.out.println("Error de bindingResult" + bindingResult.hasErrors());
         } else {
             mav.setViewName("redirect:/marcas");
@@ -88,7 +90,7 @@ public class RutasMarca {
 	}	
 	
 	@PostMapping("/marcas/editar")
-	public ModelAndView clienteEditar(@ModelAttribute("marca") Marca marca,  
+	public ModelAndView clienteEditar(@Valid @ModelAttribute("marca") Marca marca,  
 						BindingResult bindingResult) {
 		
 		
@@ -96,7 +98,7 @@ public class RutasMarca {
 		
 		if (bindingResult.hasErrors()) {
 			
-			mav.setViewName("EditarCliente");
+			mav.setViewName("EditarMarca");
 			
 			return mav;
 		}

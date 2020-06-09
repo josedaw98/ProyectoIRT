@@ -8,6 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.jose.IoC.datos.usuarios.Usuario;
 import com.jose.IoC.datos.vehiculos.Vehiculo;
 
 @Entity
@@ -20,6 +24,8 @@ public class Trabajo {
 
 	 
 	 @Column
+	 @NotNull(message="no puedes dejar esto vacio")
+	 @Size(min=1, message="no puedes dejar esto vacio")
 	 private String titulo;
 	 
 	 @Column
@@ -32,12 +38,24 @@ public class Trabajo {
 	 @JoinColumn(name="vehiculo_matricula" )
 	 private Vehiculo vehiculo = new Vehiculo();
 	 
+	 @Column
+	 private String trabajador ;
 	 
 	 
 	 
 	 
 	 
-	 public Vehiculo getVehiculo() {
+	 
+
+	public String getTrabajador() {
+		return trabajador;
+	}
+
+	public void setTrabajador(String trabajador) {
+		this.trabajador = trabajador;
+	}
+
+	public Vehiculo getVehiculo() {
 		return vehiculo;
 	}
 
@@ -84,7 +102,7 @@ public class Trabajo {
 		@Override
 		public String toString() {
 			return "Trabajo [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", sucesos=" + sucesos
-					+ "]";
+					+ ", vehiculo=" + vehiculo + ", trabajador=" + trabajador + "]";
 		}
 	 
 }

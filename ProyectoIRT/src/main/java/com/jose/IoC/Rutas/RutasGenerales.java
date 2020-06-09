@@ -26,7 +26,7 @@ public class RutasGenerales {
 	@GetMapping("/logout")
 	public String finalizar(Authentication authentication) {
 		
-		return "ok";
+		return "Login";
 	}
 	
 	@GetMapping("/login")

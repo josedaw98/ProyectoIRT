@@ -50,12 +50,15 @@ public class RutasVehiculo {
 	}
 	
 	
-	@PostMapping("/vehiculos/add")
-	public ModelAndView addPersona(@ModelAttribute Vehiculo vehiculo, BindingResult bindingResult) {
+	@PostMapping("/addVehiculos")
+	public ModelAndView addPersona(@Valid @ModelAttribute Vehiculo vehiculo, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();
 		
 		if(bindingResult.hasErrors()) {
-            mav.setViewName("redirect:/elegirCliente");
+            mav.setViewName("AñadirVehiculo");
+			mav.addObject("listaMarcas",marcaDAO.findAll());
+			mav.addObject("listaModelos",modeloDAO.findAll());
+			mav.addObject("cliente",vehiculo.getCliente());
             System.out.println("Error de bindingResult" + bindingResult.hasErrors());
         } else {
             mav.setViewName("redirect:/vehiculos");
@@ -89,14 +92,15 @@ public class RutasVehiculo {
 	}	
 	
 	@PostMapping("/vehiculos/editar")
-	public ModelAndView usuariosEditar(@ModelAttribute("vehiculo") Vehiculo vehiculo,  
+	public ModelAndView usuariosEditar(@Valid @ModelAttribute("vehiculo") Vehiculo vehiculo,  
 						BindingResult bindingResult) {
 		
 		
 		ModelAndView mav = new ModelAndView();
 		
 		if (bindingResult.hasErrors()) {
-			
+			mav.addObject("listaMarcas",marcaDAO.findAll());
+			mav.addObject("listaModelos",modeloDAO.findAll());
 			mav.setViewName("EditarVehiculo");
 			
 			return mav;
@@ -144,15 +148,15 @@ public class RutasVehiculo {
 	}
 	
 	@PostMapping("/clientes/Comprobado")
-	public ModelAndView ClienteComprobado(@ModelAttribute Cliente cliente){
+	public ModelAndView ClienteComprobado(@Valid @ModelAttribute Cliente cliente){
 		
 		ModelAndView mav = new ModelAndView();
 		
 		if(clienteDAO.existsById(cliente.getDni())) {
 			mav.setViewName("AñadirVehiculo");
 			Optional<Cliente>Lista =clienteDAO.findById(cliente.getDni());
-			cliente=Lista.get();
-			mav.addObject("cliente", cliente);
+			Cliente clientes=Lista.get();
+			mav.addObject("cliente", clientes);
 			mav.addObject("vehiculo", new Vehiculo());
 			mav.addObject("listaMarcas",marcaDAO.findAll());
 			mav.addObject("listaModelos",modeloDAO.findAll());

@@ -37,7 +37,7 @@
 			<h4 class="modal-title" id="exampleModalLabel">Nuevo Vehiculo</h4>
 
 
-			<form action="#" th:action="@{/vehiculos/add}" th:object="${vehiculo}"
+			<form action="#" th:action="@{/addVehiculos}" th:object="${vehiculo}"
 				method="post">
 				<div class="modal-body">
 					<div class="form-row">
@@ -45,6 +45,10 @@
 							<label for="matricula">matricula</label> <input type="text"
 								th:field="*{matricula}" placeholder="inserta un matricula"
 								class="form-control" id="matricula">
+								<ul>
+								<li th:each="err : ${#fields.errors('matricula')}" th:text="${err}"
+									class="text-danger" />
+							</ul>
 						</div>
 						<div class="form-group col-md-12">
 							<label for="Bastidor">Bastidor</label> <input type="text"
