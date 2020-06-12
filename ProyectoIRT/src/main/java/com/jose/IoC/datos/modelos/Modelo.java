@@ -27,12 +27,10 @@ public class Modelo {
 	private Integer id;
 
 	@Column
-	@NotNull(message="no puedes dejar esto vacio")
 	@Size(min=1, message="no puedes dejar esto vacio")
 	private String nombre;
 
 	@Column
-	@NotNull(message="no puedes dejar esto vacio")
 	@Size(min=1, message="no puedes dejar esto vacio")
 	private String combustible;
 

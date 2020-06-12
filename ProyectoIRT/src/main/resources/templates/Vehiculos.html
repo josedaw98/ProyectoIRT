@@ -76,7 +76,7 @@
 									class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
 									data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false"><span sec:authentication="name">Bob</span></a>
-									<div class="dropdown-menu dropdown-primary"
+									<div class="dropdown-menu dropdown-primary "
 										aria-labelledby="navbarDropdownMenuLink">
 										<span th:remove="tag"
 											th:if=" (${#authorization.expression('hasAnyAuthority(''ADMIN'')')})">
@@ -142,14 +142,14 @@
 														<h5 class="modal-title">Borrar vehiculo</h5>
 													</div>
 													<div class="modal-body">
-														<h3>Estas seguro que quieres borrar este vehiculo?</h3>
+														<h3>Estas seguro que quieres borrarlo?</h3>
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-outline pull-left"
-															data-dismiss="modal">Close</button>
+															data-dismiss="modal">No</button>
 														<a type="button" class="btn btn-outline"
 															th:href="@{/vehiculos/delete/{id}(id=${vehiculo.matricula})}"><i
-															class="fa fa-check"></i>&nbsp;Yes</a>
+															class="fa fa-check"></i>&nbsp;Si</a>
 													</div>
 												</div>
 											</div>
@@ -161,12 +161,6 @@
 					</div>
 					<!--  fin de mis datos -->
 
-				</div>
-				<div class="col-12">
-					<div class="d-flex justify-content-end mt-2">
-						<a type="button" class="btn btn-primary "
-							th:href="@{/elegirCliente}"> Nuevo Vehiculo </a>
-					</div>
 				</div>
 			</div>
 		</div>
